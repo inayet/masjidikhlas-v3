@@ -1,6 +1,7 @@
 # Hugo generated files
 site/public/
 site/resources/_gen/
+public/
 
 # OS files
 .DS_Store
@@ -29,3 +30,96 @@ site/hugo.toml.backup
 
 # Nix
 result/
+site-copy/
+
+# Build artifacts
+build-cache/
+*.pid
+*.lock
+
+# Environment and configuration files
+.env
+.env.local
+.env.production
+.env.*.local
+config/local.*
+secrets/
+*.key
+*.pem
+*.crt
+*.p12
+
+# Database files
+*.db
+*.sqlite
+*.sqlite3
+
+# Cache directories
+.cache/
+.hugo_build.lock
+
+# Testing artifacts
+coverage/
+.nyc_output/
+test-results/
+*.test
+
+# Deployment specific
+.netlify/
+.vercel/
+.firebase/
+dist/
+build/
+
+# IDE specific
+.vscode/settings.json
+.vscode/launch.json
+.vscode/extensions.json
+.idea/workspace.xml
+.idea/tasks.xml
+.idea/dictionaries
+.idea/shelf
+.idea/contentModel.xml
+.idea/dataSources.ids
+.idea/dataSources.local.xml
+.idea/sqlDataSources.xml
+.idea/dynamic.xml
+.idea/uiDesigner.xml
+.idea/gradle.xml
+.idea/libraries
+.idea/misc.xml
+.idea/modules.xml
+.idea/vcs.xml
+
+# OS specific
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Sensitive information
+*.secret
+*.private
+credentials.json
+service-account.json
+*.p8
+*.p12
+*.pfx
+
+# Local development
+local/
+tmp/
+temp/
+logs/
+
+# Analytics and tracking
+google-analytics.json
+analytics.json
+tracking/
+
+# User uploads (if any)
+uploads/
+media/user/
+static/uploads/
