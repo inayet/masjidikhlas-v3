@@ -135,16 +135,17 @@ pre-deploy-check:
     @echo "🚀 Pre-deployment validation..."
     @echo ""
     @echo "1️⃣ Checking for uncommitted changes..."
-    @if [ -n "$(git status --porcelain)" ]; then
-        echo "❌ You have uncommitted changes:"
-        git status --porcelain
-        echo ""
-        echo "Please commit your changes first:"
-        echo "  git add ."
-        echo "  git commit -m 'Your commit message'"
-        exit 1
-    else
-        echo "✅ No uncommitted changes"
+    @if [ -n "$(git status --porcelain)" ]; then \
+        echo "❌ You have uncommitted changes:"; \
+        git status --porcelain; \
+        echo ""; \
+        echo "Please commit your changes first:"; \
+        echo "  git add ."; \
+        echo "  git commit -m 'Your commit message'"; \
+        exit 1; \
+    fi
+    else \
+        echo "✅ No uncommitted changes"; \
     fi
     @echo ""
     @echo "2️⃣ Running quality checks..."
@@ -173,16 +174,16 @@ backup-local:
 safe-pull:
     # Pull changes without overwriting local work
     @echo "🔄 Safe pull workflow..."
-    @if [ -n "$(git status --porcelain)" ]; then
-        echo "📦 You have local changes, creating backup..."
-        just backup-local
+    @if [ -n "$(git status --porcelain)" ]; then \
+        echo "📦 You have local changes, creating backup..."; \
+        just backup-local; \
     fi
     @echo "📥 Pulling latest changes..."
     @git pull origin main
     @echo "✅ Pull complete"
-    @if [ -n "$(git stash list)" ]; then
-        echo "📦 Restoring your changes..."
-        @git stash pop
+    @if [ -n "$(git stash list)" ]; then \
+        echo "📦 Restoring your changes..."; \
+        git stash pop; \
     fi
 
 safe-sync:
@@ -191,16 +192,16 @@ safe-sync:
     just safe-pull
     @echo ""
     @echo "🔍 Checking for merge conflicts..."
-    @if [ -n "$(git diff --name-only --diff-filter=U)" ]; then
-        echo "⚠️  Merge conflicts detected in:"
-        git diff --name-only --diff-filter=U
-        echo ""
-        echo "Please resolve conflicts manually, then:"
-        echo "  git add ."
-        echo "  git commit"
-        exit 1
-    else
-        echo "✅ No conflicts detected"
+    @if [ -n "$(git diff --name-only --diff-filter=U)" ]; then \
+        echo "⚠️  Merge conflicts detected in:"; \
+        git diff --name-only --diff-filter=U; \
+        echo ""; \
+        echo "Please resolve conflicts manually, then:"; \
+        echo "  git add ."; \
+        echo "  git commit"; \
+        exit 1; \
+    else \
+        echo "✅ No conflicts detected"; \
     fi
 
 quick-check:
@@ -282,44 +283,46 @@ deploy-railways:
     just set-env railways
     just build
 
-set-env environment="github-pages":
-    # Set baseURL for specific environment (safely)
-    @echo "🔧 Setting environment to: {{environment}}"
-    #!/usr/bin/env bash
-    # Backup current config
+set-env-local:
+    # Set environment to local development
+    @echo "🔧 Setting environment to local"
     cp site/hugo.toml site/hugo.toml.backup
-    case "{{environment}}" in
-    "local")
-        sed -i 's|baseURL = .*|baseURL = "http://localhost:1313"|' site/hugo.toml
-        ;;
-    "github-pages")
-        sed -i 's|baseURL = .*|baseURL = "https://inayet.github.io/masjidikhlas-v3"|' site/hugo.toml
-        ;;
-    "production")
-        sed -i 's|baseURL = .*|baseURL = "https://masjidikhlas.org"|' site/hugo.toml
-        ;;
-    "railways")
-        sed -i 's|baseURL = .*|baseURL = "https://masjidikhlas.up.railway.app"|' site/hugo.toml
-        ;;
-    *)
-        echo "❌ Unknown environment: {{environment}}"
-        echo "Available: local, github-pages, production, railways"
-        # Restore backup
-        mv site/hugo.toml.backup site/hugo.toml
-        exit 1
-        ;;
-    esac
-    @echo "✅ Environment set to {{environment}}"
+    sed -i 's|baseURL = .*|baseURL = "http://localhost:1313"|' site/hugo.toml
+    @echo "✅ Environment set to local"
+    @echo "💾 Backup saved to site/hugo.toml.backup"
+
+set-env-github:
+    # Set environment to GitHub Pages
+    @echo "🔧 Setting environment to GitHub Pages"
+    cp site/hugo.toml site/hugo.toml.backup
+    sed -i 's|baseURL = .*|baseURL = "https://inayet.github.io/masjidikhlas-v3"|' site/hugo.toml
+    @echo "✅ Environment set to GitHub Pages"
+    @echo "💾 Backup saved to site/hugo.toml.backup"
+
+set-env-production:
+    # Set environment to production
+    @echo "🔧 Setting environment to production"
+    cp site/hugo.toml site/hugo.toml.backup
+    sed -i 's|baseURL = .*|baseURL = "https://masjidikhlas.org"|' site/hugo.toml
+    @echo "✅ Environment set to production"
+    @echo "💾 Backup saved to site/hugo.toml.backup"
+
+set-env-railways:
+    # Set environment to Railways
+    @echo "🔧 Setting environment to Railways"
+    cp site/hugo.toml site/hugo.toml.backup
+    sed -i 's|baseURL = .*|baseURL = "https://masjidikhlas.up.railway.app"|' site/hugo.toml
+    @echo "✅ Environment set to Railways"
     @echo "💾 Backup saved to site/hugo.toml.backup"
 
 restore-config:
     # Restore configuration from backup
-    @if [ -f "site/hugo.toml.backup" ]; then
-        echo "🔄 Restoring configuration from backup..."
-        mv site/hugo.toml.backup site/hugo.toml
-        echo "✅ Configuration restored"
-    else
-        echo "❌ No backup found"
+    @if [ -f "site/hugo.toml.backup" ]; then \
+        echo "🔄 Restoring configuration from backup..."; \
+        mv site/hugo.toml.backup site/hugo.toml; \
+        echo "✅ Configuration restored"; \
+    else \
+        echo "❌ No backup found"; \
     fi
 
 show-env:
