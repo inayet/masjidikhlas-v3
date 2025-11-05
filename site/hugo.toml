@@ -1,21 +1,21 @@
 # Hugo Site Configuration
 # Template for Masjid Ikhlas V3 - Customize for your organization
 
-baseURL = "https://testuser.github.io/test-org-repo"
+baseURL = "https://inayet.github.io/masjidikhlas-v3"
 languageCode = 'en-us'
-title = 'Test Organization'
+title = 'Masjid Ikhlas'
 theme = 'ikhlas'
 
 [params]
   # Organization Information
-  description = "Test description"
-  author = "Test Organization"
+  description = "Metropolitan Denver North Islamic Center - Masjid Ikhlas is committed to Islamic way of life based on Qur'an and life example of Prophet Muhammad (Peace be upon him)"
+  author = "Masjid Ikhlas"
   logo = "/images/logo.png"
   
   # Contact Information
-  contact_email = "test@testorg.org"
-  phone = "555-0123"
-  address = "123 Test Street"
+  contact_email = "office@masjidikhlas.org"
+  phone = "303-920-0252"
+  address = "11141 N Irma Drive, Northglenn, CO 80233, USA"
 
 [markup]
   [markup.goldmark]
@@ -76,4 +76,4 @@ theme = 'ikhlas'
   facebook = "https://facebook.com/yourmasjid"
   instagram = "https://instagram.com/yourmasjid"
   twitter = "https://twitter.com/yourmasjid"
-  youtube = "https://youtube.com/channel/testchannel"
+  youtube = "https://youtube.com/channel/UC8tPOcewvQp80xQWSsUgauQ"
