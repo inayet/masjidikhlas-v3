@@ -1,4 +1,4 @@
-baseURL = "https://inayet.github.io/masjidikhlas-v3/"  # Fixed baseURL for GitHub Pages
+baseURL = "https://inayet.github.io/masjidikhlas-v3/"  # Fixed baseURL for GitHub Pages - CNAME removed
 languageCode = 'en-us'
 title = 'Masjid Ikhlas'
 theme = 'ikhlas'
