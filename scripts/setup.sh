@@ -31,7 +31,7 @@ prompt_input() {
         read -p "$prompt: " input
     fi
     
-    eval "$var_name='$input'"
+    printf -v "$var_name" '%s' "$input"
 }
 
 # Function to update config file
@@ -56,27 +56,27 @@ echo
 echo -e "${BLUE}🏢 Organization Information${NC}"
 echo "------------------------"
 
-prompt_input "Organization name" "Your Masjid/Organization Name" ORG_NAME
-prompt_input "Organization description" "Your masjid/organization description - Brief overview of your mission and purpose" ORG_DESCRIPTION
-prompt_input "Contact email" "contact@yourorganization.org" CONTACT_EMAIL
-prompt_input "Phone number" "+1-555-0123" PHONE
-prompt_input "Address" "123 Main Street, City, State 12345, USA" ADDRESS
+prompt_input "Organization name" "Masjid Ikhlas" ORG_NAME
+prompt_input "Organization description" "Metropolitan Denver North Islamic Center - Masjid Ikhlas is committed to Islamic way of life based on Qur'an and life example of Prophet Muhammad (Peace be upon him)" ORG_DESCRIPTION
+prompt_input "Contact email" "office@masjidikhlas.org" CONTACT_EMAIL
+prompt_input "Phone number" "303-920-0252" PHONE
+prompt_input "Address" "11141 N Irma Drive, Northglenn, CO 80233, USA" ADDRESS
 
 echo
 echo -e "${BLUE}🌐 GitHub Repository Information${NC}"
 echo "--------------------------------"
 
-prompt_input "GitHub username" "your-username" GITHUB_USERNAME
-prompt_input "Repository name" "your-repo-name" REPO_NAME
+prompt_input "GitHub username" "inayet" GITHUB_USERNAME
+prompt_input "Repository name" "masjidikhlas-v3" REPO_NAME
 
 echo
 echo -e "${BLUE}📱 Social Media Information${NC}"
 echo "---------------------------"
 
-prompt_input "Facebook handle" "yourorganization" FACEBOOK
-prompt_input "Instagram handle" "yourorganization" INSTAGRAM
-prompt_input "Twitter handle" "yourorganization" TWITTER
-prompt_input "YouTube channel ID" "YOUR_CHANNEL_ID" YOUTUBE
+prompt_input "Facebook handle" "masjidikhlasco" FACEBOOK
+prompt_input "Instagram handle" "masjidikhlasco" INSTAGRAM
+prompt_input "Twitter handle" "masjidikhlasco" TWITTER
+prompt_input "YouTube channel ID" "UC8tPOcewvQp80xQWSsUgauQ" YOUTUBE
 
 echo
 echo -e "${BLUE}🔧 Applying Configuration${NC}"
@@ -93,9 +93,9 @@ if [[ -f "site/hugo.toml.template" ]]; then
     echo -e "${GREEN}✅ Created site/hugo.toml from template${NC}"
 fi
 
-update_config "site/hugo.toml" "Your Organization Name" "$ORG_NAME"
+update_config "site/hugo.toml" "Your Masjid/Organization Name" "$ORG_NAME"
 update_config "site/hugo.toml" "https://your-username.github.io/your-repo-name" "$BASE_URL"
-update_config "site/hugo.toml" "Your masjid/organization description" "$ORG_DESCRIPTION"
+update_config "site/hugo.toml" "Your masjid/organization description - Brief overview of your mission and purpose" "$ORG_DESCRIPTION"
 update_config "site/hugo.toml" "contact@yourorganization.org" "$CONTACT_EMAIL"
 update_config "site/hugo.toml" "+1-555-0123" "$PHONE"
 update_config "site/hugo.toml" "123 Main Street, City, State 12345, USA" "$ADDRESS"
