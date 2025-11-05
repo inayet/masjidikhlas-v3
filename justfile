@@ -100,7 +100,7 @@ edit-home:
     echo "💡 Save file, then run 'just start' to see changes"
     echo "🔄 Auto-refresh: Changes appear in browser automatically"
     echo "📝 Using editor: ${EDITOR:-nvim}"
-    nix develop -c bash -c '"${EDITOR:-nvim}" "$(pwd)/site/content/_index.md"'
+    nix develop -c bash -c '"${EDITOR:-nvim}" "site/content/_index.md"'
 
 edit-about:
     # Edit About Us page
@@ -109,7 +109,7 @@ edit-about:
     echo "📝 Editing: site/content/about/_index.md"
     echo "💡 Update masjid information, history, and mission"
     echo "📝 Using editor: ${EDITOR:-nvim}"
-    nix develop -c bash -c '"${EDITOR:-nvim}" "$(pwd)/site/content/about/_index.md"'
+    nix develop -c bash -c '"${EDITOR:-nvim}" "site/content/about/_index.md"'
 
 edit-contact:
     # Edit Contact page
@@ -118,7 +118,7 @@ edit-contact:
     echo "📝 Editing: site/content/contact/_index.md"
     echo "💡 Update address, phone, email, and office hours"
     echo "📝 Using editor: ${EDITOR:-nvim}"
-    nix develop -c bash -c '"${EDITOR:-nvim}" "$(pwd)/site/content/contact/_index.md"'
+    nix develop -c bash -c '"${EDITOR:-nvim}" "site/content/contact/_index.md"'
 
 edit-donate:
     # Edit Donation page
@@ -127,7 +127,7 @@ edit-donate:
     echo "📝 Editing: site/content/donate/_index.md"
     echo "💡 Update donation methods, campaigns, and zakat information"
     echo "📝 Using editor: ${EDITOR:-nvim}"
-    nix develop -c bash -c '"${EDITOR:-nvim}" "$(pwd)/site/content/donate/_index.md"'
+    nix develop -c bash -c '"${EDITOR:-nvim}" "site/content/donate/_index.md"'
 
 edit-events:
     # Edit Events page
@@ -136,7 +136,7 @@ edit-events:
     echo "📝 Editing: site/content/events/_index.md"
     echo "💡 Update regular programs and special events"
     echo "📝 Using editor: ${EDITOR:-nvim}"
-    nix develop -c bash -c '"${EDITOR:-nvim}" "$(pwd)/site/content/events/_index.md"'
+    nix develop -c bash -c '"${EDITOR:-nvim}" "site/content/events/_index.md"'
 
 edit-academy:
     # Edit Ikhlas Academy page
@@ -145,7 +145,7 @@ edit-academy:
     echo "📝 Editing: site/content/ikhlas-academy/_index.md"
     echo "💡 Update educational programs and class schedules"
     echo "📝 Using editor: ${EDITOR:-nvim}"
-    nix develop -c bash -c '"${EDITOR:-nvim}" "$(pwd)/site/content/ikhlas-academy/_index.md"'
+    nix develop -c bash -c '"${EDITOR:-nvim}" "site/content/ikhlas-academy/_index.md"'
 
 edit-youth:
     # Edit Youth Department page
@@ -154,7 +154,7 @@ edit-youth:
     echo "📝 Editing: site/content/ikhlas-youth-department/_index.md"
     echo "💡 Update youth programs, activities, and schedules"
     echo "📝 Using editor: ${EDITOR:-nvim}"
-    nix develop -c bash -c '"${EDITOR:-nvim}" "$(pwd)/site/content/ikhlas-youth-department/_index.md"'
+    nix develop -c bash -c '"${EDITOR:-nvim}" "site/content/ikhlas-youth-department/_index.md"'
 
 edit-outreach:
     # Edit Outreach Department page
@@ -163,7 +163,7 @@ edit-outreach:
     echo "📝 Editing: site/content/outreach-department/_index.md"
     echo "💡 Update community programs and interfaith activities"
     echo "📝 Using editor: ${EDITOR:-nvim}"
-    nix develop -c bash -c '"${EDITOR:-nvim}" "$(pwd)/site/content/outreach-department/_index.md"'
+    nix develop -c bash -c '"${EDITOR:-nvim}" "site/content/outreach-department/_index.md"'
 
 edit-services:
     # Edit Services page
@@ -172,7 +172,7 @@ edit-services:
     echo "📝 Editing: site/content/services/_index.md"
     echo "💡 Update masjid services and facilities"
     echo "📝 Using editor: ${EDITOR:-nvim}"
-    nix develop -c bash -c '"${EDITOR:-nvim}" "$(pwd)/site/content/services/_index.md"'
+    nix develop -c bash -c '"${EDITOR:-nvim}" "site/content/services/_index.md"'
 
 edit-prayer:
     # Update prayer times for current month
@@ -181,7 +181,7 @@ edit-prayer:
     echo "📝 Editing: site/content/monthly-prayer-schedule/_index.md"
     echo "💡 Update prayer times for current month"
     echo "📝 Using editor: ${EDITOR:-nvim}"
-    nix develop -c bash -c '"${EDITOR:-nvim}" "$(pwd)/site/content/monthly-prayer-schedule/_index.md"'
+    nix develop -c bash -c '"${EDITOR:-nvim}" "site/content/monthly-prayer-schedule/_index.md"'
 
 new-page name:
     # Create new page with template
