@@ -84,7 +84,9 @@
           EOF
           cat > $out/bin/serve-masjidikhlas <<EOF
           #!/usr/bin/env bash
-          cd ${workflowDrv}/site-copy
+          mkdir -p site-copy/public
+          cp -r ${siteDir}/* site-copy/
+          cd site-copy
           ${pkgs.caddy}/bin/caddy run --config $out/config/Caddyfile
           EOF
           chmod +x $out/bin/serve-masjidikhlas
