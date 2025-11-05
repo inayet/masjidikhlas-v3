@@ -74,7 +74,7 @@
             auto_https off
           }
           :8080 {
-            root * ${workflowDrv}/site-copy/public
+            root * ./public
             file_server
             encode gzip
             header X-Frame-Options "DENY"
@@ -84,6 +84,7 @@
           EOF
           cat > $out/bin/serve-masjidikhlas <<EOF
           #!/usr/bin/env bash
+          cd ${workflowDrv}/site-copy
           ${pkgs.caddy}/bin/caddy run --config $out/config/Caddyfile
           EOF
           chmod +x $out/bin/serve-masjidikhlas
