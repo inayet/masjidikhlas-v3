@@ -385,7 +385,7 @@ prayer: edit-prayer
 build:
     # Build site for production
     @echo "🏗️  Building site..."
-    cd site && hugo --minify --gc
+    cd site && nix shell nixpkgs#hugo --command bash -c 'hugo --minify --gc'
     @echo "✅ Build complete"
 
 [private]
