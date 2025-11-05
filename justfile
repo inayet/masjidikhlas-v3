@@ -39,11 +39,11 @@ start:
     @echo "🔧 Setting up environment..."
     @if ! command -v hugo >/dev/null 2>&1; then \
         echo "📦 Entering Nix development environment..."; \
-        exec nix develop -c hugo server --bind 0.0.0.0 --port 1313 --buildDrafts --buildFuture --navigateToChanged --source site; \
+        exec nix develop -c cd site && hugo server --bind 0.0.0.0 --port 1313 --buildDrafts --buildFuture --navigateToChanged --baseURL http://localhost:1313; \
     fi
     @echo "✅ Hugo ready"
     @echo ""
-    cd site && hugo server --bind 0.0.0.0 --port 1313 --buildDrafts --buildFuture --navigateToChanged
+    cd site && hugo server --bind 0.0.0.0 --port 1313 --buildDrafts --buildFuture --navigateToChanged --baseURL http://localhost:1313
 
 publish:
     # Complete deployment to GitHub Pages
@@ -88,7 +88,7 @@ publish:
         BASE_URL="https://your-domain.com"; \
     fi; \
     if ! command -v hugo >/dev/null 2>&1; then \
-        nix develop -c hugo --minify --gc --baseURL "$$BASE_URL" --source site; \
+        nix develop -c cd site && hugo --minify --gc --baseURL "$$BASE_URL"; \
     else \
         cd site && hugo --minify --gc --baseURL "$$BASE_URL"; \
     fi
@@ -112,7 +112,7 @@ preview:
     # Preview production build locally with HTTPS
     @echo "🔍 Building production preview..."
     @if ! command -v hugo >/dev/null 2>&1; then \
-        nix develop -c hugo --minify --gc --source site; \
+        nix develop -c cd site && hugo --minify --gc; \
     else \
         cd site && hugo --minify --gc; \
     fi
