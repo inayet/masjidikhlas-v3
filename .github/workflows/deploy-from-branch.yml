@@ -1,0 +1,40 @@
+name: Deploy from Branch
+
+on:
+  push:
+    branches: [ github-deploy-v1-a ]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          ref: github-deploy-v1-a
+
+      - name: Setup Hugo
+        uses: peaceiris/actions-hugo@v3
+        with:
+          hugo-version: 'latest'
+          extended: true
+
+      - name: Build Site
+        run: |
+          export HUGO_ENV=github-pages
+          cd site
+          source ../scripts/set-env.sh
+          hugo --gc --minify --baseURL $HUGO_BASEURL
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./site/public
+          destination_dir: .

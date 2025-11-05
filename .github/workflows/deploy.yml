@@ -2,9 +2,10 @@ name: Deploy Hugo Site to GitHub Pages
 
 on:
   push:
-    branches: [ github-deploy-v1-a ]
+    branches: [ main ]
   pull_request:
-    branches: [ github-deploy-v1-a ]
+    branches: [ main ]
+  workflow_dispatch:
 
 permissions:
   contents: read
