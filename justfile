@@ -56,10 +56,9 @@ preview:
     @echo "📦 Building in Nix development environment..."
     nix develop -c bash -c 'cd "$(git rev-parse --show-toplevel)/site" && hugo --minify --gc'
     @echo ""
-    @echo "🌐 Starting HTTPS preview server..."
-    @echo "📍 Site will be available at: https://localhost:8443"
+    @echo "🌐 Starting HTTP preview server..."
+    @echo "📍 Site will be available at: http://localhost:8080"
     @echo "💡 Press Ctrl+C to stop"
-    @echo "⚠️  Browser may show security warning (self-signed certificate)"
     nix develop -c bash -c 'cd "$(git rev-parse --show-toplevel)" && nix run .#serve'
 
 status:

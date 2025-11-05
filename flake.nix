@@ -73,12 +73,10 @@
           {
             auto_https off
           }
-          :8443 {
+          :8080 {
             root * ${workflowDrv}/site-copy/public
             file_server
             encode gzip
-            tls internal
-            header Strict-Transport-Security "max-age=31536000;"
             header X-Frame-Options "DENY"
             header X-Content-Type-Options "nosniff"
             header Content-Security-Policy "default-src 'self';"
