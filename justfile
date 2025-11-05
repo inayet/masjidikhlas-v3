@@ -197,11 +197,31 @@ new-page name:
     # Create new page with template
     @echo "📄 Creating new page: {{name}}"
     @mkdir -p site/content/{{name}}
-    @printf '---\ntitle: "%s"\ndate: %s\ndraft: false\ndescription: "Description for %s"\n---\n\n# %s\n\n## Overview\n\nAdd overview information here.\n\n## Details\n\nAdd detailed information here.\n\n## Resources\n\n- [Resource 1](#)\n- [Resource 2](#)\n' "{{name}}" "$(date +%Y-%m-%d)" "{{name}}" "{{name}}" > site/content/{{name}}/_index.md
+    @echo '---' > site/content/{{name}}/_index.md
+    @echo 'title: "{{name}}"' >> site/content/{{name}}/_index.md
+    @echo "date: $(date +%Y-%m-%d)" >> site/content/{{name}}/_index.md
+    @echo 'draft: false' >> site/content/{{name}}/_index.md
+    @echo 'description: "Description for {{name}}"' >> site/content/{{name}}/_index.md
+    @echo '---' >> site/content/{{name}}/_index.md
+    @echo '' >> site/content/{{name}}/_index.md
+    @echo '# {{name}}' >> site/content/{{name}}/_index.md
+    @echo '' >> site/content/{{name}}/_index.md
+    @echo '## Overview' >> site/content/{{name}}/_index.md
+    @echo '' >> site/content/{{name}}/_index.md
+    @echo 'Add overview information here.' >> site/content/{{name}}/_index.md
+    @echo '' >> site/content/{{name}}/_index.md
+    @echo '## Details' >> site/content/{{name}}/_index.md
+    @echo '' >> site/content/{{name}}/_index.md
+    @echo 'Add detailed information here.' >> site/content/{{name}}/_index.md
+    @echo '' >> site/content/{{name}}/_index.md
+    @echo '## Resources' >> site/content/{{name}}/_index.md
+    @echo '' >> site/content/{{name}}/_index.md
+    @echo '- [Resource 1](#)' >> site/content/{{name}}/_index.md
+    @echo '- [Resource 2](#)' >> site/content/{{name}}/_index.md
     @echo "✅ Created: site/content/{{name}}/_index.md"
     @echo ""
     @echo "📝 Next steps:"
-    @echo "1. Edit the page content"
+    @echo "1. Edit page content"
     @echo "2. Add to navigation menu in site/hugo.toml if needed"
     @echo "3. Test locally: just start"
 
