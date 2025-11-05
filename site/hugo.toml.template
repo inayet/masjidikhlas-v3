@@ -1,0 +1,79 @@
+# Hugo Site Configuration
+# Template for Masjid Ikhlas V3 - Customize for your organization
+
+baseURL = "https://your-username.github.io/your-repo-name"
+languageCode = 'en-us'
+title = 'Your Masjid/Organization Name'
+theme = 'ikhlas'
+
+[params]
+  # Organization Information
+  description = "Your masjid/organization description - Brief overview of your mission and purpose"
+  author = "Your Masjid/Organization Name"
+  logo = "/images/logo.png"
+  
+  # Contact Information
+  contact_email = "contact@yourorganization.org"
+  phone = "+1-555-0123"
+  address = "123 Main Street, City, State 12345, USA"
+
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true
+
+# Main Navigation Menu
+# Customize these menu items for your masjid's structure
+[menu]
+  [[menu.main]]
+    name = "Home"
+    url = "/"
+    weight = 10
+
+  [[menu.main]]
+    name = "About Us"
+    url = "/about/"
+    weight = 20
+
+  [[menu.main]]
+    name = "Prayer Schedule"
+    url = "/monthly-prayer-schedule/"
+    weight = 30
+
+  [[menu.main]]
+    name = "Programs"
+    url = "/services/"
+    weight = 40
+
+  [[menu.main]]
+    name = "Education"
+    url = "/ikhlas-academy/"
+    weight = 45
+
+  [[menu.main]]
+    name = "Youth"
+    url = "/ikhlas-youth-department/"
+    weight = 47
+
+  [[menu.main]]
+    name = "Outreach"
+    url = "/outreach-department/"
+    weight = 48
+
+  [[menu.main]]
+    name = "Donate"
+    url = "/donate/"
+    weight = 50
+
+  [[menu.main]]
+    name = "Contact Us"
+    url = "/contact/"
+    weight = 60
+
+# Social Media Links
+# Replace with your masjid's social media accounts
+[social]
+  facebook = "https://facebook.com/yourmasjid"
+  instagram = "https://instagram.com/yourmasjid"
+  twitter = "https://twitter.com/yourmasjid"
+  youtube = "https://youtube.com/channel/YOUR_CHANNEL_ID"

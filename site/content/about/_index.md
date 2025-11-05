@@ -1,5 +1,5 @@
 ---
-title: "About Masjid Ikhlas"
+title: "About Test Mosque"
 date: 2024-01-01T00:00:00Z
 draft: false
 description: "Learn about Metropolitan Denver North Islamic Center - our mission, values, and commitment to serving the Muslim community in Denver."

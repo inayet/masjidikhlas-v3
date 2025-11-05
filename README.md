@@ -1,50 +1,69 @@
-# Masjid Ikhlas V3 - Metropolitan Denver North Islamic Center
+# 🕌 Masjid/Community Website Template
 
-A modern, static website for Masjid Ikhlas, built with Hugo and deployed via Nix for reproducible builds.
+> **A modern, static website template for mosques, community centers, and nonprofit organizations**  
+> Built with Hugo and deployed via Nix for reproducible builds. Customize for any organization!
 
-## 🕌 About
+---
 
-Masjid Ikhlas is committed to Islamic way of life based on Qur'an and life example of Prophet Muhammad (Peace be upon him). We serve as a center for religious development, social, educational, economic, and cultural enrichment in the Metropolitan Denver North area.
+## 📋 Table of Contents
 
-**Address:** 11141 N Irma Drive, Northglenn, CO 80233, USA  
-**Phone:** 303-920-0252  
-**Email:** office@masjidikhlas.org
+- [🚀 Quick Start](#-quick-start)
+- [📁 Project Structure](#-project-structure)
+- [🛠️ Development](#️-development)
+- [🧪 Testing](#-testing)
+- [🌐 Deployment](#-deployment)
+- [📚 Documentation](#-documentation)
+- [🎯 Features](#-features)
+- [🔧 Configuration](#-configuration)
+- [🤝 Contributing](#-contributing)
+- [📞 Support](#-support)
+
+---
 
 ## 🚀 Quick Start
 
-### Using Just (Recommended)
+### 🎯 For New Organizations (Recommended)
+Get your customized website in 3 simple steps:
+
 ```bash
-# Start development server
+# 1. Clone and customize for your organization
+git clone https://github.com/inayet/masjidikhlas-v3.git your-website
+cd your-website
+./scripts/setup.sh
+
+# 2. Start development server
 just start
 
-# Production preview with HTTPS
-just preview
-
-# Build and deploy
+# 3. Deploy to GitHub Pages
 just deploy
-
-# Run tests
-just test
 ```
 
-### Using Nix Commands
+**🔧 Setup Script Features:**
+- Interactive prompts for organization information
+- Automatic configuration of Hugo settings
+- Updates GitHub Actions for automatic deployment
+- Customizes content files with your organization details
+- Updates documentation and contact information
+
+### ⚡ Quick Start for Development
+If you want to test the template without customization:
+
 ```bash
-# Enter development environment
+# 1. Clone and enter development environment
+git clone https://github.com/inayet/masjidikhlas-v3.git
+cd masjidikhlas-v3
 nix develop
 
-# Start local development server
-hugo server --bind 0.0.0.0 --port 1313
+# 2. Start development server
+just start
 
-# Build and validate site
-nix run .#workflow
-
-# Start local HTTPS server (for testing)
-nix run .#serve
+# 3. Make changes and deploy
+just deploy
 ```
 
-### Quick Commands
+### ⚡ Quick Commands
 ```bash
-just help              # Show all commands
+just help              # Show all available commands
 just start             # Start development server
 just preview           # Production preview with HTTPS
 just build             # Build site
@@ -54,110 +73,74 @@ just status            # Project status
 just doctor            # System health check
 ```
 
+### 🔧 Using Nix Commands
+```bash
+nix develop            # Enter development environment
+nix run .#serve       # HTTPS server (localhost:8443)
+nix run .#workflow    # Build and validate
+nix run .#site        # Static site build
+nix run .#docs        # Show documentation
+```
+
+---
+
 ## 📁 Project Structure
 
 ```
 masjidikhlasV3/
-├── flake.nix              # Nix configuration & build scripts
-├── flake.lock             # Nix dependency lock file
-├── justfile              # Task runner commands
-├── .gitconfig            # Project-specific git aliases
-├── site/                  # Hugo site source
-│   ├── hugo.toml         # Site configuration
-│   ├── content/           # Markdown content
-│   ├── public/           # Generated site (gitignored)
-│   └── themes/ikhlas/    # Custom theme
-│       ├── layouts/      # HTML templates
-│       └── static/       # CSS, JS, images
-├── scripts/              # Testing and validation scripts
-│   ├── README.md         # Script documentation
-│   ├── run-tests.sh      # Comprehensive test suite
-│   ├── test-build.sh     # Build validation
-│   ├── test-build-simple.sh # Quick validation
-│   └── validate-content.sh # Content validation
-├── content/              # Additional content (merged during build)
-├── .github/workflows/    # GitHub Actions
-│   └── deploy.yml       # Auto-deployment to GitHub Pages
-├── README.md            # This file
-├── AGENTS.md            # Development guidelines for AI agents
-├── DEVELOPMENT.md       # Detailed development setup
-├── DEPLOYMENT.md        # Deployment instructions
-├── TESTING.md           # Testing guidelines
-├── DEPLOYMENT_SUMMARY.md # Deployment status
-└── ORGANIZATION_SUMMARY.md # Project organization
+├── 📄 README.md                    # This file - Main project documentation
+├── 📄 AGENTS.md                    # AI agent development guidelines
+├── 📄 DEVELOPMENT.md               # Detailed development setup
+├── 📄 TESTING.md                   # Testing framework and procedures
+├── 📄 DEPLOYMENT.md                # Deployment instructions and options
+├── 📄 DEPLOYMENT_SUMMARY.md        # Current deployment status
+├── 📄 ORGANIZATION_SUMMARY.md      # Project organization overview
+├── 🔧 flake.nix                   # Nix configuration & build scripts
+├── 🔧 flake.lock                  # Nix dependency lock file
+├── 🔧 justfile                     # Task runner commands
+├── 🔧 .gitconfig                  # Project-specific git aliases
+├── 📂 scripts/                    # Testing and validation scripts
+│   ├── 📄 README.md               # Script documentation
+│   ├── 📄 run-tests.sh            # Comprehensive test suite
+│   ├── 📄 test-build.sh           # Build process validation
+│   ├── 📄 test-build-simple.sh     # Quick build validation
+│   └── 📄 validate-content.sh     # Content quality validation
+├── 📂 site/                       # Hugo site source
+│   ├── 🔧 hugo.toml               # Hugo configuration
+│   ├── 📂 content/                # Markdown content
+│   ├── 📂 public/                 # Generated site (gitignored)
+│   └── 📂 themes/ikhlas/          # Custom theme
+│       ├── 📂 layouts/             # HTML templates
+│       └── 📂 static/              # CSS, JS, images
+├── 📂 content/                    # Additional content (merged during build)
+└── 📂 .github/workflows/           # GitHub Actions
+    └── 📄 deploy.yml              # Auto-deployment to GitHub Pages
 ```
 
-## 🎨 Theme Features
+---
 
-- **Responsive Design:** Mobile-first, works on all devices
-- **Modern CSS:** Custom properties, grid layouts, animations
-- **SEO Optimized:** Meta tags, structured data, semantic HTML
-- **Accessibility:** ARIA labels, keyboard navigation, screen reader support
-- **Performance:** Minified assets, optimized images, fast loading
+## 🛠️ Development
 
-## 📄 Content Sections
+### 🎯 Development Workflow
 
-- **Home:** Welcome message, prayer times, announcements
-- **About Us:** History, mission, leadership, facilities
-- **Prayer Schedule:** Monthly prayer times, Jumu'ah schedule
-- **Programs:** Educational programs, youth activities, outreach
-- **Donate:** Donation options, Zakat information, fundraising
-- **Contact:** Contact form, directions, social media links
+#### For New Contributors
+1. **Setup**: `just start` (health check + server)
+2. **Develop**: Edit content in `site/content/` or theme in `site/themes/`
+3. **Validate**: `just quick-check` (fast validation)
+4. **Test**: `just test` (comprehensive testing)
+5. **Deploy**: `just deploy` (build + push)
 
-## 🛠️ Development Commands
+#### For Experienced Contributors
+1. **Smart Workflow**: `just smart` (context-aware actions)
+2. **Quick Commands**: `just s`, `just b`, `just check`, `just p`
+3. **Watch Mode**: `just watch` (auto-rebuild on changes)
+4. **Status Check**: `just status` (project overview)
 
-### Testing & Validation
+### 📝 Content Management
 
-#### Script-Based Testing
+#### Creating New Content
 ```bash
-# Comprehensive testing
-./scripts/run-tests.sh              # Run all tests with reporting
-./scripts/test-build.sh             # Build process validation
-./scripts/validate-content.sh        # Content quality checks
-./scripts/test-build-simple.sh       # Quick validation
-
-# Quick validation before deployment
-./scripts/test-build-simple.sh && ./scripts/validate-content.sh
-```
-
-#### Just-Based Testing (Recommended)
-```bash
-# Comprehensive testing
-just test                           # Full test suite (alias: just t)
-just test-build                     # Build validation only (alias: just tb)
-just test-content                   # Content validation only (alias: just tc)
-just test-quick                    # Quick validation (alias: just tq)
-
-# Quality checks
-just check-all                     # All quality checks
-just quick-check                   # Fast validation only
-just lint                          # Lint content
-just check-links                   # Check broken links
-just seo-check                     # SEO analysis
-just performance-test              # Performance testing
-```
-
-### Using Justfile (Recommended)
-Install `just` and run `just` to see all available commands.
-
-#### 🚀 Quick Start Workflow
-```bash
-# Start development (health check + server)
-just start
-
-# Complete publishing workflow (validate → build → deploy)
-just publish
-
-# Check system health
-just doctor
-
-# Smart command (detects intent)
-just smart build    # or just smart serve, check, deploy, status
-```
-
-#### 📝 Content Management
-```bash
-# Create new content
+# Create new pages
 just new-page events
 just new-event ramadan-2025
 
@@ -169,179 +152,331 @@ just update-prayer-times
 just content-stats
 ```
 
-#### 🔍 Quality Assurance
+#### Manual Content Management
+- Create markdown file in `site/content/` directory
+- Add front matter with title, date, draft status
+- Update menu in `site/hugo.toml` if needed
+
+### 🎨 Theme Customization
+
+#### CSS & Styling
+- **Main Styles**: `site/themes/ikhlas/static/css/style.css`
+- **Responsive Design**: Mobile-first approach
+- **Custom Properties**: CSS variables for theming
+
+#### JavaScript
+- **Main Script**: `site/themes/ikhlas/static/js/script.js`
+- **Functionality**: Navigation, interactions, animations
+
+#### Layout Templates
+- **Base Template**: `site/themes/ikhlas/layouts/_default/baseof.html`
+- **Page Templates**: `site/themes/ikhlas/layouts/_default/single.html`
+- **List Templates**: `site/themes/ikhlas/layouts/_default/list.html`
+
+---
+
+## 🧪 Testing
+
+### 🎯 Testing Overview
+
+The project includes a comprehensive testing framework with both script-based and Just-based testing:
+
+#### Script-Based Testing (scripts/)
 ```bash
-# Comprehensive checks
-just check-all      # All quality checks
-just quick-check    # Fast validation only
-
-# Individual checks
-just lint            # Lint content
-just check-links     # Check broken links
-just seo-check       # SEO analysis
-just performance-test # Performance testing
-
-# Script-based testing
-./scripts/run-tests.sh              # Full test suite
-./scripts/test-build.sh             # Build validation
-./scripts/validate-content.sh        # Content validation
+./scripts/run-tests.sh              # Full test suite with reporting
+./scripts/test-build.sh             # Build process validation
+./scripts/validate-content.sh        # Content quality checks
+./scripts/test-build-simple.sh       # Quick validation
 ```
 
-#### 🌐 Development & Deployment
+#### Just-Based Testing (Recommended)
 ```bash
-# Development servers
-just serve           # HTTP server (localhost:1313)
-just serve-https     # HTTPS server (localhost:8443)
-just preview         # Production preview with HTTPS
-
-# Building
-just build           # Build site
-just prod-build      # Production build with optimizations
-just workflow        # Full Nix workflow
-
-# Deployment
-just deploy          # Build and deploy
-just push            # Push to GitHub
-just sync            # Pull and rebuild
-
-# Script-based deployment
-./scripts/test-build-simple.sh && git push origin main
+just test                           # Full test suite (alias: just t)
+just test-build                     # Build validation only (alias: just tb)
+just test-content                   # Content validation only (alias: just tc)
+just test-quick                    # Quick validation (alias: just tq)
 ```
 
-#### ⚡ Quick Aliases
+### 🔍 Quality Assurance Commands
+
+#### Comprehensive Checks
 ```bash
-just s               # serve
-just b               # build
-just p               # push
-just check           # quick-check
-just stats           # content-stats
-just help            # show help
+just check-all                      # All quality checks
+just quick-check                    # Fast validation only
+just lint                           # Lint content
+just check-links                    # Check broken links
+just seo-check                      # SEO analysis
+just performance-test               # Performance testing
 ```
 
-#### 🔧 Utilities
+### 📊 Testing Workflow
+
+#### Pre-Commit Testing
 ```bash
-just status          # Project status overview
-just doctor          # System health check
-just size            # Site size analysis
-just pages           # Page count
-just search-tool <name> # Search nixpkgs packages
-just watch           # Watch for changes and auto-rebuild
+just test-quick                     # Fast validation
 ```
 
-### Direct Nix Commands
-| Command | Description |
-|---------|-------------|
-| `nix develop` | Enter development environment |
-| `nix run .#serve` | Start local HTTPS server on https://localhost:8443 |
-| `nix run .#workflow` | Build and validate site |
-| `nix run .#site` | Build static site only |
-| `nix run .#docs` | Show project documentation |
-
-### Git Aliases
-Project-specific git aliases are configured automatically:
-
+#### Pre-Deployment Testing
 ```bash
-git serve           # Start Hugo server
-git build           # Build site with minification
-git workflow        # Run Nix workflow
-git deploy          # Push to GitHub
-git new-page <name> # Create new page
-git edit-prayer     # Edit prayer times
-git check           # Validate content
-git lint            # Lint content
-git count-pages     # Count generated pages
-git site-size       # Show site size
+just test                           # Full test suite
 ```
+
+#### Continuous Integration
+```bash
+./scripts/run-tests.sh              # CI/CD integration
+```
+
+---
 
 ## 🌐 Deployment
 
-### Automated GitHub Pages (Current)
-- **Repository:** https://github.com/inayet/masjidikhlas-v3
-- **Live Site:** https://inayet.github.io/masjidikhlas-v3/
-- **Automatic:** Deployed on push to main branch via GitHub Actions
+### 🎯 Current Deployment Status
 
-### Deployment Commands
+#### ✅ Template Demo (Live)
+- **URL**: https://555-0123.github.io/123 Test Street/
+- **Status**: ✅ Active and Working
+- **Build Type**: GitHub Actions
+- **Repository**: Public (required for GitHub Actions)
+
+#### 🔄 Your Custom Domain (Target)
+- **URL**: https://your-organization.org (Your domain)
+- **Status**: 🔄 Ready for deployment after setup
+- **Method**: DNS configuration needed
+
+### 🚀 Deployment Options
+
+#### GitHub Pages (Current - Recommended)
 ```bash
-# Quick deployment (build + push)
-just deploy
+# Automatic deployment on push to main
+git push origin main
 
-# Or step by step
-just build
-just push
+# Using Just (Recommended)
+just deploy                        # Build and deploy
 
-# Using git aliases
-git quick-deploy
+# Manual deployment
+just build && git push origin main
 ```
 
-### Manual Deployment Options
-```bash
-# Build to local directory
-just prod-build
-# Output available in site/public/
+#### Custom Domain Setup
+1. **GitHub Pages Custom Domain**:
+   - Go to repository Settings → Pages
+   - Add custom domain: `masjidikhlas.org`
+   - Configure DNS records:
+     ```
+     CNAME: masjidikhlas.org → inayet.github.io
+     A: @ → 185.199.108.153
+     A: www → 185.199.108.153
+     ```
 
-# Export to custom directory
-hugo --destination /path/to/output
-```
+2. **Alternative Hosting**:
+   ```bash
+   # Build static files
+   just build
+   # Upload output to hosting provider
+   ```
 
-### Production Domain Setup
-To deploy to masjidikhlas.org:
-1. Configure DNS CNAME to point to GitHub Pages
-2. Add custom domain in GitHub repository settings
-3. SSL certificate automatically provisioned by GitHub Pages
+### 📋 Deployment Checklist
+
+#### Pre-deployment Requirements
+- [ ] Run comprehensive test suite: `just test`
+- [ ] Run quick validation: `just test-quick`
+- [ ] All pages return HTTP 200
+- [ ] Navigation links work correctly
+- [ ] Contact information is accurate
+- [ ] Prayer times are current
+- [ ] Donation forms work
+- [ ] Mobile responsive design
+- [ ] SEO meta tags present
+
+#### Build Validation
+- [ ] Build succeeds: `just build`
+- [ ] Site generates correctly (25 pages)
+- [ ] Assets optimized and minified
+- [ ] No broken links: `just check-links`
+- [ ] SEO validation passes: `just seo-check`
+
+---
+
+## 📚 Documentation
+
+### 📖 Available Documentation
+
+| Document | Purpose | Link |
+|-----------|---------|-------|
+| **README.md** | Main project documentation and quick start | [Current File](README.md) |
+| **AGENTS.md** | Development guidelines for AI agents | [View](AGENTS.md) |
+| **DEVELOPMENT.md** | Detailed development setup and workflow | [View](DEVELOPMENT.md) |
+| **TESTING.md** | Testing framework and procedures | [View](TESTING.md) |
+| **DEPLOYMENT.md** | Deployment instructions and options | [View](DEPLOYMENT.md) |
+| **DEPLOYMENT_SUMMARY.md** | Current deployment status and achievements | [View](DEPLOYMENT_SUMMARY.md) |
+| **ORGANIZATION_SUMMARY.md** | Project organization overview | [View](ORGANIZATION_SUMMARY.md) |
+| **scripts/README.md** | Testing scripts documentation | [View](scripts/README.md) |
+
+### 🔍 Quick Navigation
+
+#### For Different Roles
+- **🤖 AI Agents**: Start with [AGENTS.md](AGENTS.md)
+- **👨‍💻 Developers**: Start with [DEVELOPMENT.md](DEVELOPMENT.md)
+- **🧪 Testers**: Start with [TESTING.md](TESTING.md)
+- **🚀 DevOps**: Start with [DEPLOYMENT.md](DEPLOYMENT.md)
+
+#### For Different Tasks
+- **🚀 Quick Start**: Use commands in [Quick Start](#-quick-start)
+- **🛠️ Development**: Follow [Development Workflow](#️-development)
+- **🧪 Testing**: Use [Testing Framework](#-testing)
+- **🌐 Deployment**: Follow [Deployment Guide](#-deployment)
+
+---
+
+## 🎯 Features
+
+### 🏗️ Build System
+- **✅ Nix-based**: Reproducible builds and dependencies
+- **✅ Hugo Static Site**: Fast, secure, and SEO-friendly
+- **✅ Just Task Runner**: Streamlined development workflow
+- **✅ Automated Testing**: Comprehensive test suite
+- **✅ GitHub Actions**: Automatic deployment on push
+
+### 🎨 Theme Features
+- **✅ Responsive Design**: Mobile-first, works on all devices
+- **✅ Modern CSS**: Custom properties, grid layouts, animations
+- **✅ SEO Optimized**: Meta tags, structured data, semantic HTML
+- **✅ Accessibility**: ARIA labels, keyboard navigation, screen reader support
+- **✅ Performance**: Minified assets, optimized images, fast loading
+
+### 🔒 Security Features
+- **✅ HTTPS Only**: Secure connections with HSTS
+- **✅ Security Headers**: CSP, X-Frame-Options, X-Content-Type-Options
+- **✅ No Secrets**: No credentials or sensitive data in repository
+- **✅ Static Assets**: Read-only deployment, no server-side processing
+
+### 📱 Content Sections
+- **✅ Home**: Welcome message, prayer times, announcements
+- **✅ About Us**: History, mission, leadership, facilities
+- **✅ Prayer Schedule**: Monthly prayer times, Jumu'ah schedule
+- **✅ Programs**: Educational programs, youth activities, outreach
+- **✅ Ikhlas Academy**: Educational programs and courses
+- **✅ Youth Department**: Youth activities and programs
+- **✅ Outreach**: Community outreach and services
+- **✅ Donate**: Donation options, Zakat information, fundraising
+- **✅ Contact**: Contact form, directions, social media links
+
+---
 
 ## 🔧 Configuration
 
-### Site Settings (site/hugo.toml)
-- `baseURL`: Production URL (https://masjidikhlas.org)
-- `title`: Site title
-- `params`: Contact info, social media links
+### ⚙️ Site Configuration
 
-### Theme Customization
-- CSS: `site/themes/ikhlas/static/css/style.css`
-- JavaScript: `site/themes/ikhlas/static/js/script.js`
-- Layouts: `site/themes/ikhlas/layouts/`
+#### Hugo Configuration (`site/hugo.toml`)
+The configuration file is generated by the setup script. Run `./scripts/setup.sh` to customize:
 
-## 📱 Content Management
+```toml
+baseURL = "https://your-username.github.io/your-repo-name"
+languageCode = 'en-us'
+title = 'Your Organization Name'
+theme = 'ikhlas'
 
-### Quick Content Commands
+[params]
+  description = "Your organization description..."
+  author = "Your Organization Name"
+  logo = "/images/logo.png"
+  contact_email = "contact@yourorganization.org"
+  phone = "555-0123"
+  address = "123 Main Street, Your City, ST 12345, USA"
+```
+
+#### Menu Configuration
+```toml
+[[menu.main]]
+  name = "Home"
+  url = "/"
+  weight = 10
+
+[[menu.main]]
+  name = "About Us"
+  url = "/about/"
+  weight = 20
+# ... more menu items
+```
+
+### 🔧 Nix Configuration
+
+#### Build System (`flake.nix`)
+- **Development Environment**: Nix shell with Hugo and dependencies
+- **Build Outputs**: Static site generation and HTTPS server
+- **Security**: HTTPS with self-signed certificates for local development
+- **Performance**: Optimized builds with minification
+
+### 🎨 Theme Customization
+
+#### CSS Variables
+```css
+:root {
+  --primary-color: #2c5282;
+  --secondary-color: #4a5568;
+  --accent-color: #e53e3e;
+  --text-color: #2d3748;
+  --background-color: #f7fafc;
+}
+```
+
+#### JavaScript Features
+- Mobile navigation toggle
+- Smooth scrolling
+- Form validation
+- Image lazy loading
+- Performance monitoring
+
+---
+
+## 🤝 Contributing
+
+### 🎯 How to Contribute
+
+#### 🚀 For New Contributors
+1. **Fork** the repository
+2. **Clone** your fork locally
+3. **Create** a feature branch: `git checkout -b feature-name`
+4. **Make** your changes following the [Development Workflow](#️-development)
+5. **Test** your changes: `just test`
+6. **Commit** your changes with descriptive messages
+7. **Push** to your fork
+8. **Create** a Pull Request
+
+#### ⚡ Quick Contribution Workflow
 ```bash
-# Create new page with template
-just new-page events
-git new-page announcements
+# 1. Start development
+just start
 
-# Update prayer times
-just update-prayer-times
-git edit-prayer
+# 2. Make changes
+# Edit content or theme files
 
-# Format content
-just format-content
+# 3. Quality checks
+just quick-check
+
+# 4. Comprehensive testing
+just test
+
+# 5. Deploy (if you have push access)
+just deploy
 ```
 
-### Manual Content Management
-1. Create markdown file in `site/content/` directory
-2. Add front matter with title, date, draft status
-3. Update menu in `site/hugo.toml` if needed
+### 📝 Content Guidelines
 
-### Content Structure
-```
-site/content/
-├── _index.md                    # Homepage
-├── about/_index.md             # About page
-├── contact/_index.md           # Contact information
-├── donate/_index.md            # Donation options
-├── monthly-prayer-schedule/    # Prayer times
-├── services/_index.md          # Services overview
-├── ikhlas-academy/_index.md    # Educational programs
-├── outreach-department/_index.md # Outreach programs
-└── ikhlas-youth-department/_index.md # Youth activities
-```
+#### Writing Style
+- Use clear, concise language
+- Follow Islamic terminology correctly
+- Include contact information and prayer times
+- Keep content under 80 characters per line when possible
+- Use descriptive alt text for images
 
-### Front Matter Template
+#### Front Matter Template
 ```yaml
 ---
 title: "Page Title"
 date: 2025-01-01
 draft: false
+description: "Brief description for SEO"
 ---
 
 # Page Title
@@ -349,179 +484,90 @@ draft: false
 Content goes here...
 ```
 
-## 🎯 SEO & Performance
+### 🧪 Testing Guidelines
 
-### Built-in Optimizations
-- **Meta Tags:** Open Graph, Twitter Cards, structured data
-- **Performance:** Minified CSS/JS, optimized images
-- **Security:** HTTPS headers, CSP policies
-- **Accessibility:** WCAG 2.1 AA compliance
+#### Before Submitting
+- [ ] Run `just test-quick` for fast validation
+- [ ] Run `just test` for comprehensive testing
+- [ ] Check mobile responsiveness
+- [ ] Verify all links work
+- [ ] Test contact forms
 
-### Quality Assurance Commands
-```bash
-# Link validation
-just check-links      # Uses nixpkgs#html-proofer
-
-# SEO analysis
-just seo-check        # Uses nixpkgs#lychee
-
-# Performance testing
-just performance-test # Uses nixpkgs#apacheBench
-
-# Content linting
-just lint             # Uses nixpkgs#markdownlint-cli2
-
-# Image optimization
-just image-optimize   # Uses nixpkgs#optipng, nixpkgs#jpegoptim
-
-# Security scanning
-just security-scan    # Uses nixpkgs#nmap
-```
-
-### Site Statistics
-```bash
-just size             # Site size analysis
-just pages            # Page count
-git site-size         # Alternative size command
-git count-pages       # Alternative page count
-```
-
-## 🤝 Contributing
-
-### Streamlined Development Workflow
-
-#### 🚀 For New Contributors
-```bash
-# 1. Quick health check and start development
-just start
-
-# 2. Make changes to content or theme
-# Edit files in site/content/ or site/themes/
-
-# 3. Quality checks (automated)
-just check-all
-
-# 4. Deploy when ready
-just publish
-```
-
-#### ⚡ For Experienced Contributors
-```bash
-# Smart workflow - detects what you need
-just smart serve     # Start development
-just smart build     # Build site
-just smart check     # Run checks
-just smart deploy    # Deploy site
-
-# Or use quick aliases
-just s               # Start server
-just b               # Build
-just check           # Quick validation
-just p               # Push/deploy
-```
-
-#### 📝 Content Updates
-```bash
-# Create new content
-just new-page announcements
-just new-event community-fundraiser
-
-# Quick edits
-just update-homepage
-just update-prayer-times
-
-# Check content status
-just content-stats
-```
-
-#### 🔍 Quality Assurance Integration
-```bash
-# Before committing
-just quick-check     # Fast validation
-
-# Before deploying
-just check-all       # Comprehensive checks
-
-# Continuous monitoring
-just watch           # Auto-rebuild on changes
-```
-
-### Pre-commit Checklist
-```bash
-# Automated pre-commit check
-./scripts/run-tests.sh              # Runs all tests automatically
-
-# Or manual checklist:
-- [ ] Content validates: `./scripts/validate-content.sh`
-- [ ] Build works: `./scripts/test-build.sh`
-- [ ] Quick validation: `./scripts/test-build-simple.sh`
-- [ ] No broken links: `just check-links`
-- [ ] Images optimized: `just image-optimize`
-- [ ] SEO checks pass: `just seo-check`
-- [ ] Site builds: `just build`
-- [ ] Local testing: `just serve`
-```
-
-### Smart Development Tips
-```bash
-# Use smart command for context-aware actions
-just smart          # Detects what you probably want to do
-
-# Watch mode for continuous development
-just watch          # Auto-rebuilds on file changes
-
-# Quick status overview
-just status         # Shows git, build, and site status
-
-# Health check if something seems wrong
-just doctor         # System and project health
-```
-
-### Code Style
+#### Code Style
 - Use 2-space indentation for YAML front matter
 - Follow semantic HTML5 structure
-- Keep content under 80 characters per line when possible
-- Use descriptive alt text for images
+- Keep CSS organized with comments
 - Include proper meta descriptions for pages
-
-## 📞 Support
-
-### Documentation
-- **AGENTS.md:** Development guidelines for AI agents
-- **DEVELOPMENT.md:** Detailed development setup
-- **justfile:** All available commands (run `just`)
-- **Git aliases:** Project-specific shortcuts (run `git config --list | grep alias`)
-
-### Troubleshooting
-```bash
-# Check environment
-just deps             # Show Nix dependencies
-nix flake show        # Show all flake outputs
-
-# Search for tools
-just search-tool html-proofer  # Find available packages
-
-# Run tests for debugging
-./scripts/run-tests.sh              # Full test suite
-./scripts/test-build.sh             # Build issues
-./scripts/validate-content.sh        # Content issues
-
-# Common issues
-just clean            # Clean build artifacts
-just validate         # Check content structure
-just check-links      # Find broken links
-```
-
-### Getting Help
-1. Check this README and documentation files
-2. Run `just` to see all available commands
-3. Test locally before deployment
-4. Review GitHub Actions logs for deployment issues
-
-## 📄 License
-
-This project is maintained by Masjid Ikhlas for community use.
 
 ---
 
-*"Faith in Allah, Simple Living, Hard Work & High Thinking."*
+## 📞 Support
+
+### 🆘 Getting Help
+
+#### 📚 Documentation
+- **[AGENTS.md](AGENTS.md)**: Development guidelines for AI agents
+- **[DEVELOPMENT.md](DEVELOPMENT.md)**: Detailed development setup
+- **[TESTING.md](TESTING.md)**: Testing framework and procedures
+- **[DEPLOYMENT.md](DEPLOYMENT.md)**: Deployment instructions
+
+#### 🔧 Troubleshooting Commands
+```bash
+just doctor                        # System health check
+just status                        # Project status overview
+just deps                           # Show Nix dependencies
+just validate                       # Check content structure
+just check-links                    # Find broken links
+```
+
+#### 🐛 Common Issues
+
+##### Permission Denied on Port 80
+**Problem**: `just preview` fails with "bind: permission denied"
+**Solution**: Fixed with `auto_https off` in `flake.nix`
+**Status**: ✅ Resolved
+
+##### Hugo Command Not Found
+**Problem**: `hugo: command not found`
+**Solution**: Use `nix develop` or `just start`
+**Status**: ✅ Working
+
+##### Pages Showing README Instead of Site
+**Problem**: GitHub Pages serving README.md instead of Hugo site
+**Solution**: Repository configured for GitHub Actions (not legacy)
+**Status**: ✅ Fixed
+
+#### 📧 Contact Information
+- **Email**: contact@yourorganization.org (customize via setup script)
+- **Phone**: 555-0123 (customize via setup script)
+- **Address**: 123 Main Street, Your City, ST 12345 (customize via setup script)
+- **Website**: https://your-organization.org (configure after setup)
+
+### 🌐 Social Media
+- **Facebook**: https://facebook.com/yourorganization (customize via setup script)
+- **Instagram**: https://instagram.com/yourorganization (customize via setup script)
+- **Twitter**: https://twitter.com/yourorganization (customize via setup script)
+- **YouTube**: https://youtube.com/channel/yourchannel (customize via setup script)
+
+---
+
+## 📄 License
+
+This project is maintained as an open-source template for community organizations.
+
+> **Customize this template for your mosque, community center, or nonprofit organization!**
+
+---
+
+### 🎉 Quick Links Summary
+
+| Task | Command | Documentation |
+|------|---------|----------------|
+| **Start Development** | `just start` | [Development Guide](DEVELOPMENT.md) |
+| **Run Tests** | `just test` | [Testing Guide](TESTING.md) |
+| **Build Site** | `just build` | [Build System](#-build-system) |
+| **Deploy Site** | `just deploy` | [Deployment Guide](DEPLOYMENT.md) |
+| **Check Health** | `just doctor` | [Troubleshooting](#-troubleshooting-commands) |
+| **View All Commands** | `just help` | [Quick Commands](#-quick-commands) |
+
+**🚀 Ready to get started?** [Jump to Quick Start](#-quick-start)

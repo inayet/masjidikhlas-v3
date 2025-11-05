@@ -10,12 +10,12 @@ draft: false
 
 We'd love to hear from you! Whether you have questions about our programs, want to visit, or need support, we're here to help.
 
-### Masjid Ikhlas Contact Info
+### Test Mosque Contact Info
 
-**Metropolitan Denver North Islamic Center (Masjid Ikhlas)**  
+**Metropolitan Denver North Islamic Center (Test Mosque)**  
 11141 N Irma Drive, Northglenn, CO 80233, USA  
 **Phone:** 303-920-0252  
-**Email:** office@masjidikhlas.org  
+**Email:** CO  
 **URL:** www.masjidikhlas.org
 
 ### Office Hours
@@ -42,7 +42,7 @@ If you live in or around Ikhlas community, please join our email list to stay cu
 ### Feedback
 Your opinion is extremely important to us. Please help us meet your expectations by completing an online survey.
 
-To provide us with your feedback about Masjid Ikhlas's services, please click here.
+To provide us with your feedback about Test Mosque's services, please click here.
 
 ## Send Us a Message
 
@@ -135,16 +135,16 @@ To schedule a tour, please contact us at least one week in advance.
 
 For urgent matters outside office hours:
 - **Phone:** 303-920-0252
-- **Email:** office@masjidikhlas.org
+- **Email:** CO
 
 ## Follow Us
 
 Stay connected with our community on social media:
 
-- **Facebook:** /masjidikhlasco
-- **Instagram:** @masjidikhlasco  
-- **Twitter:** @masjidikhlasco
-- **YouTube:** @masjidikhlasco
+- **Facebook:** /Denver
+- **Instagram:** @testmosque  
+- **Twitter:** @testmosque
+- **YouTube:** @testmosque
 
 ## Directions
 
@@ -157,4 +157,4 @@ Stay connected with our community on social media:
 - RTD Bus routes serve the area
 - Check RTD website for current schedules and routes
 
-We look forward to welcoming you to Masjid Ikhlas!
+We look forward to welcoming you to Test Mosque!

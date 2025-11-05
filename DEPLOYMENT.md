@@ -3,7 +3,7 @@
 ## 🌐 Current Deployments
 
 ### ✅ GitHub Pages (Live)
-**URL:** https://inayet.github.io/masjidikhlas-v3/
+**URL:** https://555-0123.github.io/123 Test Street/
 **Status:** ✅ Active and Working
 **Branch:** main
 **Auto-deploy:** ✅ Enabled via GitHub Actions
@@ -11,7 +11,7 @@
 **Repository:** Public (required for GitHub Actions)
 
 ### 🔄 Masjidikhlas.org (Target)
-**URL:** https://masjidikhlas.org (Target domain)
+**URL:** https://123 Test Street.org (Target domain)
 **Status:** 🔄 Ready for deployment
 **Method:** DNS configuration needed
 
@@ -36,15 +36,15 @@ nix run .#workflow
 nix run .#deployNetlify -- /path/to/build/output
 ```
 
-### 3. Custom Domain (masjidikhlas.org)
-To deploy to masjidikhlas.org:
+### 3. Custom Domain (123 Test Street.org)
+To deploy to 123 Test Street.org:
 
 #### Option A: GitHub Pages Custom Domain
 1. Go to repository Settings → Pages
-2. Add custom domain: `masjidikhlas.org`
+2. Add custom domain: `123 Test Street.org`
 3. Configure DNS records:
    ```
-   CNAME: masjidikhlas.org → inayet.github.io
+   CNAME: 123 Test Street.org → inayet.github.io
    A: @ → 185.199.108.153
    A: www → 185.199.108.153
    ```
@@ -92,12 +92,12 @@ nix run .#workflow
 - [ ] Validate HTML/CSS
 - [ ] Check SSL certificate
 
-## 🔧 DNS Configuration for masjidikhlas.org
+## 🔧 DNS Configuration for 123 Test Street.org
 
 ### Required Records
 ```
 Type: CNAME
-Name: masjidikhlas.org
+Name: 123 Test Street.org
 Value: inayet.github.io
 TTL: 3600
 
@@ -116,7 +116,7 @@ TTL: 3600
 In repository Settings → Pages:
 - Source: Deploy from a branch
 - Branch: main
-- Custom domain: masjidikhlas.org
+- Custom domain: 123 Test Street.org
 - Enforce HTTPS: ✅
 
 ## 📊 Monitoring
@@ -224,5 +224,5 @@ Add to `site/themes/ikhlas/layouts/partials/head.html`:
 ---
 
 **Current Status:** ✅ Site built and deployed to GitHub Pages  
-**Next Step:** Configure DNS for masjidikhlas.org domain  
+**Next Step:** Configure DNS for 123 Test Street.org domain  
 **Repository:** https://github.com/inayet/masjidikhlas-v3

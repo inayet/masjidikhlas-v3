@@ -91,7 +91,7 @@ check_prerequisites() {
     local test_scripts=("test-build.sh" "validate-content.sh")
     
     for script in "${test_scripts[@]}"; do
-        if [[ -f "$script" ]] && [[ -x "$script" ]]; then
+        if [[ -f "scripts/$script" ]] && [[ -x "scripts/$script" ]]; then
             echo -e "${GREEN}✅ $script available and executable${NC}"
         else
             echo -e "${RED}❌ $script missing or not executable${NC}"
@@ -115,7 +115,7 @@ main() {
     
     # Run build tests
     echo -e "\n${YELLOW}🏗️  Running Build Tests${NC}"
-    if run_test_suite "Build Tests" "./test-build.sh"; then
+    if run_test_suite "Build Tests" "./scripts/test-build.sh"; then
         BUILD_TESTS_PASSED=1
     else
         BUILD_TESTS_FAILED=1
@@ -123,7 +123,7 @@ main() {
     
     # Run content validation
     echo -e "\n${YELLOW}📝 Running Content Validation${NC}"
-    if run_test_suite "Content Validation" "./validate-content.sh"; then
+    if run_test_suite "Content Validation" "./scripts/validate-content.sh"; then
         CONTENT_VALIDATIONS_PASSED=1
     else
         CONTENT_VALIDATIONS_FAILED=1

@@ -36,16 +36,12 @@ jobs:
       - name: Build Site
         run: |
           cd site
-          hugo --gc --minify --baseURL https://inayet.github.io/masjidikhlas-v3/
+          # Use GitHub's automatic URL detection for flexible deployment
+          hugo --gc --minify --baseURL ${{ steps.pages.outputs.base_url }} || hugo --gc --minify
 
       - name: Setup Pages
         uses: actions/configure-pages@v4
-
-      - name: Configure Pages source
-        run: |
-          echo "Configuring GitHub Pages to use GitHub Actions..."
-          # This ensures Pages uses the GitHub Actions deployment
-          echo "Pages will be deployed from GitHub Actions artifact"
+        id: pages
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
