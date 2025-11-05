@@ -5,13 +5,13 @@ baseURL = "http://localhost:1313"
 description = "Local development server"
 
 [environments.github-pages]
-baseURL = "https://testuser.github.io/test-mosque-site"
+baseURL = "https://inayet.github.io/masjidikhlas-v3"
 description = "GitHub Pages deployment"
 
 [environments.production]
-baseURL = "https://test-community-site.org"
+baseURL = "https://masjidikhlas-v3.org"
 description = "Production domain"
 
 [environments.railways]
-baseURL = "https://masjidikhlas.up.railway.app"
+baseURL = "https://masjidikhlas-v3.up.railway.app"
 description = "Railways deployment"

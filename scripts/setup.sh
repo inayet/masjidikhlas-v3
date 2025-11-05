@@ -108,6 +108,11 @@ update_config "site/hugo.toml" "YOUR_CHANNEL_ID" "$YOUTUBE"
 echo -e "${YELLOW}🔄 Updating environments configuration...${NC}"
 update_config "site/environments.toml" "https://inayet.github.io/masjidikhlas-v3" "$BASE_URL"
 update_config "site/environments.toml" "https://masjidikhlas.org" "https://${REPO_NAME}.org"
+update_config "site/environments.toml" "https://testuser.github.io/test-mosque-site" "$BASE_URL"
+update_config "site/environments.toml" "https://test-community-site.org" "https://${REPO_NAME}.org"
+update_config "site/environments.toml" "https://masjidikhlas-v3.org" "https://${REPO_NAME}.org"
+update_config "site/environments.toml" "https://masjidikhlas.up.railway.app" "https://${REPO_NAME}.up.railway.app"
+update_config "site/environments.toml" "https://masjidikhlas-v3.up.railway.app" "https://${REPO_NAME}.up.railway.app"
 echo -e "${GREEN}✅ Environments configuration updated${NC}"
 
 # Update GitHub Actions workflow
