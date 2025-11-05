@@ -16,7 +16,7 @@ We'd love to hear from you! Whether you have questions about our programs, want 
 11141 N Irma Drive, Northglenn, CO 80233, USA  
 **Phone:** 303-920-0252  
 **Email:** CO  
-**URL:** www.masjidikhlas.org
+**URL:** www.test-community-site.org
 
 ### Office Hours
 - **Monday - Friday:** 9:00 AM - 5:00 PM

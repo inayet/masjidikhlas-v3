@@ -180,7 +180,7 @@ All documentation updates verified:
 ### GitHub Actions
 - ✅ Workflow updated for new organization
 - ✅ Deployment successful after reorganization
-- ✅ Live site accessible: https://inayet.github.io/masjidikhlas-v3/
+- ✅ Live site accessible: https://testuser.github.io/test-community-site/
 
 ### Git History
 - **Commit 1**: `fb805c4` - Add testing framework

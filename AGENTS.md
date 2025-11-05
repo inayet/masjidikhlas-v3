@@ -519,7 +519,7 @@ GitHub Pages configured for "legacy" build instead of GitHub Actions.
 #### Verification
 ```bash
 git push origin main           # Triggers deployment
-# Check: https://inayet.github.io/masjidikhlas-v3/
+# Check: https://testuser.github.io/test-community-site/
 # Shows Hugo site, not README.md
 ```
 
@@ -527,7 +527,7 @@ git push origin main           # Triggers deployment
 - **Fixed**: ✅ Resolved
 - **Build Type**: GitHub Actions
 - **Deployment**: Automatic on push
-- **URL**: https://inayet.github.io/masjidikhlas-v3/
+- **URL**: https://testuser.github.io/test-community-site/
 
 ---
 

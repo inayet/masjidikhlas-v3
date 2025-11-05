@@ -139,7 +139,7 @@ just deploy               # ✅ Build and deploy (recommended)
 ```
 
 ## 🌐 Live Deployment
-- **URL**: https://inayet.github.io/masjidikhlas-v3/
+- **URL**: https://testuser.github.io/test-community-site/
 - **Status**: ✅ Live and accessible
 - **HTTPS**: ✅ Enabled with valid certificate
 - **Performance**: ✅ Fast loading and optimized

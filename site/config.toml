@@ -10,12 +10,12 @@ URL = "http://localhost:1313"
 # GitHub Pages
 [[deployment.targets]]
 name = "github-pages"
-URL = "https://inayet.github.io/masjidikhlas-v3"
+URL = "https://testuser.github.io/test-community-site"
 
 # Production domain
 [[deployment.targets]]
 name = "production"
-URL = "https://masjidikhlas.org"
+URL = "test-community-site.org"
 
 # Default to GitHub Pages for now
-baseURL = "https://inayet.github.io/masjidikhlas-v3"
+baseURL = "https://testuser.github.io/test-community-site"

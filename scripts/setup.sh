@@ -104,6 +104,12 @@ update_config "site/hugo.toml" "yourorganization" "$INSTAGRAM"
 update_config "site/hugo.toml" "yourorganization" "$TWITTER"
 update_config "site/hugo.toml" "YOUR_CHANNEL_ID" "$YOUTUBE"
 
+# Update environments.toml
+echo -e "${YELLOW}🔄 Updating environments configuration...${NC}"
+update_config "site/environments.toml" "https://inayet.github.io/masjidikhlas-v3" "$BASE_URL"
+update_config "site/environments.toml" "https://masjidikhlas.org" "https://${REPO_NAME}.org"
+echo -e "${GREEN}✅ Environments configuration updated${NC}"
+
 # Update GitHub Actions workflow
 echo -e "${YELLOW}🔄 Updating GitHub Actions workflow...${NC}"
 # The workflow now uses automatic URL detection, so no changes needed
@@ -123,6 +129,26 @@ echo -e "${YELLOW}📚 Updating documentation files...${NC}"
 update_config "DEPLOYMENT.md" "inayet.github.io/masjidikhlas-v3" "$GITHUB_USERNAME.github.io/$REPO_NAME"
 update_config "DEPLOYMENT.md" "masjidikhlas.org" "${REPO_NAME}.org"
 
+# Update AGENTS.md
+update_config "AGENTS.md" "https://inayet.github.io/masjidikhlas-v3/" "$BASE_URL/"
+
+# Update DEPLOYMENT_SUMMARY.md
+update_config "DEPLOYMENT_SUMMARY.md" "https://inayet.github.io/masjidikhlas-v3/" "$BASE_URL/"
+
+# Update ORGANIZATION_SUMMARY.md
+update_config "ORGANIZATION_SUMMARY.md" "https://inayet.github.io/masjidikhlas-v3/" "$BASE_URL/"
+
+# Update scripts/index.md
+update_config "scripts/index.md" "https://inayet.github.io/masjidikhlas-v3/" "$BASE_URL/"
+update_config "scripts/index.md" "https://github.com/inayet/masjidikhlas-v3" "https://github.com/$GITHUB_USERNAME/$REPO_NAME"
+update_config "scripts/index.md" "https://github.com/inayet/masjidikhlas-v3/actions" "https://github.com/$GITHUB_USERNAME/$REPO_NAME/actions"
+
+# Update site/config.toml (if exists)
+if [[ -f "site/config.toml" ]]; then
+    update_config "site/config.toml" "https://inayet.github.io/masjidikhlas-v3" "$BASE_URL"
+    update_config "site/config.toml" "https://masjidikhlas.org" "${REPO_NAME}.org"
+fi
+
 # Update content files
 echo -e "${YELLOW}📝 Updating content files...${NC}"
 
@@ -139,6 +165,10 @@ find site/content -name "*.md" -exec sed -i "s|@masjidikhlasco|@$TWITTER|g" {} \
 
 # Update organization name in content
 find site/content -name "*.md" -exec sed -i "s|Masjid Ikhlas|$ORG_NAME|g" {} \;
+
+# Update hardcoded URLs in content
+find site/content -name "*.md" -exec sed -i "s|www\.masjidikhlas\.org|www.${REPO_NAME}.org|g" {} \;
+find site/content -name "*.md" -exec sed -i "s|masjidikhlas\.org@gmail\.com|${REPO_NAME}@gmail.com|g" {} \;
 
 echo -e "${GREEN}✅ Content files updated${NC}"
 

@@ -206,9 +206,9 @@ bash -x scripts/validate-content.sh
 
 ## 🔗 External Links
 
-- **Live Site**: https://inayet.github.io/masjidikhlas-v3/
-- **Repository**: https://github.com/inayet/masjidikhlas-v3
-- **GitHub Actions**: https://github.com/inayet/masjidikhlas-v3/actions
+- **Live Site**: https://testuser.github.io/test-community-site/
+- **Repository**: https://github.com/testuser/test-community-site
+- **GitHub Actions**: https://github.com/testuser/test-community-site/actions
 
 ---
 

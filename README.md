@@ -22,13 +22,13 @@
 
 ## 🚀 Quick Start
 
-### 🎯 For Masjid Ikhlas (Current Setup)
-The repository is pre-configured for Masjid Ikhlas. Just run:
+### 🎯 For Test Mosque (Current Setup)
+The repository is pre-configured for Test Mosque. Just run:
 
 ```bash
 # 1. Clone and start development
-git clone https://github.com/inayet/masjidikhlas-v3.git
-cd masjidikhlas-v3
+git clone https://github.com/testuser/test-mosque-site.git
+cd test-mosque-site
 just start
 
 # 2. Deploy when ready
@@ -40,7 +40,7 @@ Get your customized website in 3 simple steps:
 
 ```bash
 # 1. Clone and customize for your organization
-git clone https://github.com/inayet/masjidikhlas-v3.git your-website
+git clone https://github.com/testuser/test-mosque-site.git your-website
 cd your-website
 ./scripts/setup.sh
 
@@ -52,7 +52,7 @@ just deploy
 ```
 
 **🔧 Setup Script Features:**
-- Defaults to Masjid Ikhlas values (just hit Enter)
+- Defaults to Test Mosque values (just hit Enter)
 - Interactive prompts for organization customization
 - Automatic configuration of Hugo settings
 - Updates GitHub Actions for automatic deployment
