@@ -353,36 +353,23 @@ stats: content-stats
 
 # 🎯 Smart Commands
 
-smart:
-    # Smart command that detects what you want to do
-    # Usage: just smart [build|serve|check|deploy|status]
-    #!/usr/bin/env bash
-    COMMAND="$1"
-    case "$COMMAND" in
-    "build"|"b")
+smart-build:
     just build
-    ;;
-    "serve"|"s"|"dev")
+
+smart-serve:
     just serve
-    ;;
-    "check"|"test"|"t")
+
+smart-check:
     just check-all
-    ;;
-    "deploy"|"publish"|"d")
+
+smart-deploy:
     just deploy
-    ;;
-    "status"|"info"|"i")
+
+smart-status:
     just status
-    ;;
-    "help"|"h"|"")
+
+smart-help:
     just default
-    ;;
-    *)
-    echo "❌ Unknown command: $COMMAND"
-    echo "Available: build, serve, check, deploy, status, help"
-    exit 1
-    ;;
-    esac
 
 watch:
     # Watch for changes and rebuild automatically
@@ -390,6 +377,6 @@ watch:
     echo "👀 Watching for changes..."
     echo "Press Ctrl+C to stop"
     while inotifywait -r -e modify,create,delete site/content site/themes 2>/dev/null; do
-        echo "🔄 Changes detected, rebuilding..."
-        just build
+    echo "🔄 Changes detected, rebuilding..."
+    just build
     done
