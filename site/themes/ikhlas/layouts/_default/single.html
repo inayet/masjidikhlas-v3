@@ -1,32 +1,15 @@
 {{ define "main" }}
+<div class="page-header">
+    <div class="container">
+        <h1>{{ .Title }}</h1>
+        {{ if .Params.description }}
+            <p class="page-description">{{ .Params.description }}</p>
+        {{ end }}
+    </div>
+</div>
+
 <div class="container">
-    <h1>Debug Template for: {{ .Title }}</h1>
-    
-    <h2>Page Variables:</h2>
-    <ul>
-        <li>Title: {{ .Title }}</li>
-        <li>Kind: {{ .Kind }}</li>
-        <li>Type: {{ .Type }}</li>
-        <li>Section: {{ .Section }}</li>
-        <li>Draft: {{ .Draft }}</li>
-    </ul>
-    
-    <h2>Content Test:</h2>
-    <div style="border: 2px solid red; padding: 10px;">
-        <p>.Content length: {{ len .Content }}</p>
-        <p>.RawContent length: {{ len .RawContent }}</p>
-        <p>.FuzzyWordCount: {{ .FuzzyWordCount }}</p>
-        <p>.WordCount: {{ .WordCount }}</p>
-        <p>.ReadingTime: {{ .ReadingTime }}</p>
-    </div>
-    
-    <h2>Raw Content:</h2>
-    <div style="border: 2px solid blue; padding: 10px; white-space: pre-wrap;">
-        {{ .RawContent }}
-    </div>
-    
-    <h2>Processed Content:</h2>
-    <div style="border: 2px solid green; padding: 10px;">
+    <div class="content">
         {{ .Content }}
     </div>
 </div>

@@ -10,19 +10,26 @@
 
 <div class="container">
     <div class="content">
-        {{ range .Pages }}
-        <article class="post">
-            <h2><a href="{{ .Permalink }}">{{ .Title }}</a></h2>
-            <div class="post-meta">
-                <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "January 2, 2006" }}</time>
-            </div>
-            <div class="post-summary">
-                {{ .Summary }}
-            </div>
-            {{ if .Truncated }}
-            <a href="{{ .Permalink }}" class="read-more">Read more →</a>
+        {{ .Content }}
+        
+        {{ if .Pages }}
+        <div class="section-pages">
+            <h2>Pages in this section:</h2>
+            {{ range .Pages }}
+            <article class="post">
+                <h3><a href="{{ .Permalink }}">{{ .Title }}</a></h3>
+                <div class="post-meta">
+                    <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "January 2, 2006" }}</time>
+                </div>
+                <div class="post-summary">
+                    {{ .Summary }}
+                </div>
+                {{ if .Truncated }}
+                <a href="{{ .Permalink }}" class="read-more">Read more →</a>
+                {{ end }}
+            </article>
             {{ end }}
-        </article>
+        </div>
         {{ end }}
     </div>
 </div>
