@@ -294,17 +294,8 @@ help:
     @echo ""
     @echo "🌐 Deployment:"
     @echo "• Local: http://localhost:1313"
-    @REPO_URL=$$(git config --get remote.origin.url 2>/dev/null); \
-    if [ -n "$$REPO_URL" ] && echo "$$REPO_URL" | grep -q "github.com"; then \
-        REPO_NAME=$$(basename "$$REPO_URL" .git); \
-        USERNAME=$$(basename "$$(dirname "$$REPO_URL")"); \
-        echo "• GitHub Pages: https://$$USERNAME.github.io/$$REPO_NAME"; \
-    elif [ -n "$$REPO_URL" ]; then \
-        echo "• Repository: $$REPO_URL"; \
-        echo "• Configure your domain for deployment"; \
-    else \
-        echo "• Set up git repository to enable deployment"; \
-    fi
+    @echo "• Local: http://localhost:1313"
+    @echo "• Repository: $(git remote get-url origin 2>/dev/null || echo 'Not configured')"
     @echo ""
     @echo "💡 Tips:"
     @echo "• Changes auto-refresh in browser during development"
