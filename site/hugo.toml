@@ -34,6 +34,18 @@ theme = 'ikhlas'
     url = "/services/"
     weight = 40
   [[menu.main]]
+    name = "Ikhlas Academy"
+    url = "/ikhlas-academy/"
+    weight = 45
+  [[menu.main]]
+    name = "Youth Department"
+    url = "/ikhlas-youth-department/"
+    weight = 47
+  [[menu.main]]
+    name = "Outreach"
+    url = "/outreach-department/"
+    weight = 48
+  [[menu.main]]
     name = "Donate"
     url = "/donate/"
     weight = 50

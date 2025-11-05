@@ -1,0 +1,29 @@
+{{ define "main" }}
+<div class="page-header">
+    <div class="container">
+        <h1>{{ .Title }}</h1>
+        {{ if .Params.description }}
+        <p class="page-description">{{ .Params.description }}</p>
+        {{ end }}
+    </div>
+</div>
+
+<div class="container">
+    <div class="content">
+        {{ range .Pages }}
+        <article class="post">
+            <h2><a href="{{ .Permalink }}">{{ .Title }}</a></h2>
+            <div class="post-meta">
+                <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "January 2, 2006" }}</time>
+            </div>
+            <div class="post-summary">
+                {{ .Summary }}
+            </div>
+            {{ if .Truncated }}
+            <a href="{{ .Permalink }}" class="read-more">Read more →</a>
+            {{ end }}
+        </article>
+        {{ end }}
+    </div>
+</div>
+{{ end }}
