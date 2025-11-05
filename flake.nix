@@ -9,7 +9,7 @@
       let
         pkgs      = import nixpkgs { inherit system; };
         siteDir   = ./site;
-        contentDir = ./content;
+        contentDir = ./site/content;
 
         docsText = ''
           # Masjid Ikhlas Website System – V3
@@ -54,12 +54,14 @@
           HOME = "/tmp";
         } ''
           mkdir -p $out/public
-          if [ -d "${contentDir}" ]; then
-            cp -r ${contentDir}/* $out/public/
-          else
-            echo "⚠️ No content directory found at ${contentDir}" >&2
-          fi
-          hugo -s ${siteDir} -d $out/public --gc --minify
+          mkdir -p build-cache site-copy
+          export HUGO_CACHEDIR=$(pwd)/build-cache
+          
+          # Copy site to writable location
+          cp -r ${siteDir}/* site-copy/
+          chmod -R +w site-copy/
+          
+          ${pkgs.hugo}/bin/hugo -s site-copy -d $out/public --gc --minify
           echo "Site built successfully" > $out/status.txt
         '';
 
@@ -89,6 +91,7 @@
         workflowDrv = pkgs.runCommand "workflow-masjidikhlas" {
           buildInputs = [ pkgs.hugo pkgs.ripgrep pkgs.coreutils ];
           HOME = "/tmp";
+          hugoBin = "${pkgs.hugo}/bin/hugo";
         } ''
           mkdir -p $out/bin $out/public
           cat > $out/bin/workflow-masjidikhlas <<EOF
@@ -102,11 +105,18 @@
           fi
 
           echo "🏗️ Building site..."
-          hugo -s ${siteDir} -d $out/public --gc --minify
+          mkdir -p build-cache site-copy
+          export HUGO_CACHEDIR=\$(pwd)/build-cache
+          
+          # Copy site to writable location
+          cp -r ${siteDir}/* site-copy/
+          chmod -R +w site-copy/
+          
+          ${pkgs.hugo}/bin/hugo -s site-copy -d \$PWD/public --gc --minify
 
           echo "✅ Workflow complete: merge → validate → build"
           echo "🚀 Ready for deployment"
-          echo "Site built at: $out/public"
+          echo "Site built at: \$PWD/public"
           echo "📱 To test locally: cd ${siteDir} && hugo server --port 1313"
           EOF
           chmod +x $out/bin/workflow-masjidikhlas
