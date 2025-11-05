@@ -220,7 +220,7 @@ workflow:
 
 validate:
     # Validate content structure
-    cd site && hugo check
+    cd site && hugo --minify --gc
 
 clean:
     # Clean build artifacts
