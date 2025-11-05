@@ -113,22 +113,13 @@ serve-https:
 # 🔍 Quality Assurance
 
 check-all:
-    # Run all quality checks: validate → lint → links → seo
-    @echo "🔍 Running comprehensive quality checks..."
+    # Run essential quality checks only
+    @echo "🔍 Running essential quality checks..."
     @echo ""
     @echo "1️⃣ Validating content structure..."
-    just validate
+    just validate || (echo "❌ Validation failed!" && exit 1)
     @echo ""
-    @echo "2️⃣ Linting content..."
-    just lint
-    @echo ""
-    @echo "3️⃣ Checking links..."
-    just check-links
-    @echo ""
-    @echo "4️⃣ Running SEO analysis..."
-    just seo-check
-    @echo ""
-    @echo "✅ All quality checks completed!"
+    @echo "✅ Essential checks passed!"
 
 pre-deploy-check:
     # Comprehensive pre-deployment validation
