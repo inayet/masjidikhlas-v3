@@ -41,7 +41,7 @@ publish:
     @echo "✅ No uncommitted changes"
     @echo ""
     @echo "📦 Building site in Nix development environment..."
-    nix develop -c bash -c 'cd "$(git rev-parse --show-toplevel)" && source scripts/set-env.sh && cd site && hugo --minify --gc --config config/github-pages/config.toml'
+    nix develop -c bash -c 'cd "$(git rev-parse --show-toplevel)" && export HUGO_ENV=github-pages && source scripts/set-env.sh && cd site && hugo --minify --gc --config config/github-pages/config.toml --baseURL "${HUGO_BASEURL}"'
     @echo ""
     @echo "🚀 Deploying to remote..."
     git push origin $(git branch --show-current)
