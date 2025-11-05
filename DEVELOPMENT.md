@@ -4,11 +4,12 @@
 
 ### Using Just (Recommended)
 ```bash
-# Start development server with health check
+# Start development server (HTTP - recommended)
 just start
 
-# Production preview with HTTPS
+# Production preview with HTTPS (may have SSL issues)
 just preview
+# Note: If preview has SSL errors, use 'just start' instead
 
 # Build and validate
 just build && just test
