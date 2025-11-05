@@ -1,0 +1,9 @@
+#!/bin/bash
+# Git post-checkout hook to save current branch
+# Place in .git/hooks/post-checkout
+
+# Save current branch to home directory
+git branch --show-current > ~/.last_git_branch 2>/dev/null || true
+
+# Optional: Log branch changes
+echo "🌿 Switched to branch: $(git branch --show-current)" >> ~/.git_branch_log.txt 2>/dev/null || true
