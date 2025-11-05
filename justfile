@@ -102,8 +102,8 @@ check-all:
 quick-check:
     # Fast validation only (for development)
     @echo "⚡ Quick validation..."
-    cd site && hugo check
-    @echo "✅ Content structure valid"
+    cd site && hugo --minify --gc
+    @echo "✅ Site builds successfully"
 
 # Building & Validation
 build:
@@ -174,25 +174,34 @@ git-status:
 
 new-page name:
     # Create new page: just new-page page-name
-    #!/usr/bin/env bash
-    set -e
-    PAGE_NAME="{{name}}"
-    CONTENT_DIR="site/content"
-    PAGE_DIR="$CONTENT_DIR/$PAGE_NAME"
-    PAGE_FILE="$PAGE_DIR/_index.md"
-    
-    echo "📝 Creating new page: $PAGE_NAME"
-    
-    # Create directory
-    mkdir -p "$PAGE_DIR"
-    
-    # Create page with template
-    printf '---\ntitle: "%s"\ndate: %s\ndraft: false\ndescription: "Description for %s"\n---\n\n# %s\n\nContent goes here.\n\n## Overview\n\nAdd overview information here.\n\n## Details\n\nAdd detailed information here.\n\n## Resources\n\n- [Resource 1](#)\n- [Resource 2](#)\n' "$PAGE_NAME" "$(date +%Y-%m-%d)" "$PAGE_NAME" "$PAGE_NAME" > "$PAGE_FILE"
-    
-    echo "✅ Created: $PAGE_FILE"
+    mkdir -p site/content/{{name}}
+    echo '---' > site/content/{{name}}/_index.md
+    echo 'title: "{{name}}"' >> site/content/{{name}}/_index.md
+    echo "date: $(date +%Y-%m-%d)" >> site/content/{{name}}/_index.md
+    echo 'draft: false' >> site/content/{{name}}/_index.md
+    echo 'description: "Description for {{name}}"' >> site/content/{{name}}/_index.md
+    echo '---' >> site/content/{{name}}/_index.md
+    echo '' >> site/content/{{name}}/_index.md
+    echo '# {{name}}' >> site/content/{{name}}/_index.md
+    echo '' >> site/content/{{name}}/_index.md
+    echo 'Content goes here.' >> site/content/{{name}}/_index.md
+    echo '' >> site/content/{{name}}/_index.md
+    echo '## Overview' >> site/content/{{name}}/_index.md
+    echo '' >> site/content/{{name}}/_index.md
+    echo 'Add overview information here.' >> site/content/{{name}}/_index.md
+    echo '' >> site/content/{{name}}/_index.md
+    echo '## Details' >> site/content/{{name}}/_index.md
+    echo '' >> site/content/{{name}}/_index.md
+    echo 'Add detailed information here.' >> site/content/{{name}}/_index.md
+    echo '' >> site/content/{{name}}/_index.md
+    echo '## Resources' >> site/content/{{name}}/_index.md
+    echo '' >> site/content/{{name}}/_index.md
+    echo '- [Resource 1](#)' >> site/content/{{name}}/_index.md
+    echo '- [Resource 2](#)' >> site/content/{{name}}/_index.md
+    echo "✅ Created: site/content/{{name}}/_index.md"
     echo ""
     echo "📝 Next steps:"
-    echo "1. Edit the content: $PAGE_FILE"
+    echo "1. Edit content: site/content/{{name}}/_index.md"
     echo "2. Add to navigation menu in site/hugo.toml if needed"
     echo "3. Test locally: just serve"
 
