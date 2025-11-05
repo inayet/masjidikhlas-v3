@@ -63,14 +63,13 @@ publish:
     @echo "✅ No uncommitted changes"
     @echo ""
     @echo "🔧 Detecting repository..."
-    @echo "🔧 Detecting repository..."
     @REPO_URL=$$(git config --get remote.origin.url || echo ""); \
     if [ -z "$$REPO_URL" ]; then \
         echo "❌ No git remote found. Please set up repository first."; \
         exit 1; \
-    fi; \
-    REPO_NAME=$$(basename "$$REPO_URL" .git); \
-    USERNAME=$$(basename "$$(dirname "$$REPO_URL")"); \
+    fi
+    @REPO_NAME=$$(basename "$$REPO_URL" .git); \
+    @USERNAME=$$(basename "$$(dirname "$$REPO_URL")"); \
     if echo "$$REPO_URL" | grep -q "github.com"; then \
         BASE_URL="https://$$USERNAME.github.io/$$REPO_NAME"; \
         echo "📍 GitHub Pages URL: $$BASE_URL"; \
@@ -78,32 +77,20 @@ publish:
         BASE_URL="https://your-domain.com"; \
         echo "⚠️  Non-GitHub repository detected"; \
         echo "📍 Will use custom domain: $$BASE_URL"; \
-    fi; \
-    echo ""
+    fi
+    @echo ""
     @echo "🏗️  Building site for deployment..."
-    @REPO_URL=$$(git config --get remote.origin.url); \
-    REPO_NAME=$$(basename "$$REPO_URL" .git); \
-    USERNAME=$$(basename "$$(dirname "$$REPO_URL")"); \
-    if echo "$$REPO_URL" | grep -q "github.com"; then \
-        BASE_URL="https://$$USERNAME.github.io/$$REPO_NAME"; \
+    @if ! command -v hugo >/dev/null 2>&1; then \
+        nix develop -c "cd site && hugo --minify --gc --baseURL $$BASE_URL"; \
     else \
-        BASE_URL="https://your-domain.com"; \
-    fi; \
-    if ! command -v hugo >/dev/null 2>&1; then \
-        nix develop -c cd site && hugo --minify --gc --baseURL "$$BASE_URL"; \
-    else \
-        cd site && hugo --minify --gc --baseURL "$$BASE_URL"; \
+        cd site && hugo --minify --gc --baseURL $$BASE_URL; \
     fi
     @echo ""
     @echo "🚀 Deploying to remote..."
     git push origin main
     @echo ""
     @echo "🎉 Published successfully!"
-    @REPO_URL=$$(git config --get remote.origin.url); \
-    REPO_NAME=$$(basename "$$REPO_URL" .git); \
-    USERNAME=$$(basename "$$(dirname "$$REPO_URL")"); \
-    if echo "$$REPO_URL" | grep -q "github.com"; then \
-        BASE_URL="https://$$USERNAME.github.io/$$REPO_NAME"; \
+    @if echo "$$REPO_URL" | grep -q "github.com"; then \
         echo "🌐 Live at: $$BASE_URL"; \
     else \
         echo "🌐 Configure your domain to point to deployed files"; \
