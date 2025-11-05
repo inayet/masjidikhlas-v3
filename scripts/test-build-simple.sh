@@ -20,7 +20,7 @@ fi
 
 # Test 2: Hugo build
 echo "Testing Hugo build..."
-if nix shell nixpkgs#hugo --command bash -c 'cd site && hugo --destination ../public --gc --minify' > /dev/null 2>&1; then
+if nix shell nixpkgs#hugo --command bash -c 'cd site && hugo --gc --minify' > /dev/null 2>&1; then
     echo "✅ Hugo build: PASSED"
 else
     echo "❌ Hugo build: FAILED"
@@ -29,7 +29,7 @@ fi
 
 # Test 3: Check output
 echo "Testing output files..."
-if [[ -f "public/index.html" ]]; then
+if [[ -f "site/public/index.html" ]]; then
     echo "✅ Output files: PASSED"
 else
     echo "❌ Output files: FAILED"

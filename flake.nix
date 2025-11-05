@@ -53,7 +53,7 @@
           buildInputs = [ pkgs.hugo pkgs.coreutils ];
           HOME = "/tmp";
         } ''
-          mkdir -p $out/public
+          mkdir -p $out/site/public
           mkdir -p build-cache site-copy
           export HUGO_CACHEDIR=$(pwd)/build-cache
           
@@ -61,7 +61,7 @@
           cp -r ${siteDir}/* site-copy/
           chmod -R +w site-copy/
           
-          ${pkgs.hugo}/bin/hugo -s site-copy -d $out/public --gc --minify
+          ${pkgs.hugo}/bin/hugo -s site-copy -d site-copy/public --gc --minify
           echo "Site built successfully" > $out/status.txt
         '';
 
@@ -74,7 +74,7 @@
             auto_https off
           }
           :8443 {
-            root * ${buildSite}/public
+            root * ${workflowDrv}/site-copy/public
             file_server
             encode gzip
             tls internal
@@ -115,7 +115,7 @@
           cp -r ${siteDir}/* site-copy/
           chmod -R +w site-copy/
           
-          ${pkgs.hugo}/bin/hugo -s site-copy -d \$PWD/public --gc --minify
+          ${pkgs.hugo}/bin/hugo -s site-copy -d site-copy/public --gc --minify
 
           echo "✅ Workflow complete: merge → validate → build"
           echo "🚀 Ready for deployment"
