@@ -1,4 +1,4 @@
-baseURL = "https://inayet.github.io/masjidikhlas-v3/"  # Use default GitHub Pages domain
+baseURL = "https://inayet.github.io/masjidikhlas-v3/"  # Use default GitHub Pages domain - v3
 languageCode = 'en-us'
 title = 'Masjid Ikhlas'
 theme = 'ikhlas'
