@@ -2,23 +2,44 @@
 
 ## Quick Start
 
-### 1. Enter Development Environment
+### Using Just (Recommended)
 ```bash
+# Start development server with health check
+just start
+
+# Production preview with HTTPS
+just preview
+
+# Build and validate
+just build && just test
+
+# Deploy when ready
+just deploy
+```
+
+### Using Nix Commands
+```bash
+# Enter development environment
 nix develop
-```
-This automatically changes to the `site/` directory where Hugo files are located.
 
-### 2. Start Local Development Server
-```bash
+# Start local development server
 hugo server --bind 0.0.0.0 --port 1313
-```
-The site will be available at http://localhost:1313/
 
-### 3. Alternative: Use Nix Commands
-```bash
 # From project root
 nix run .#serve    # HTTPS server on localhost:8443
 nix run .#workflow # Build and validate
+```
+
+### Quick Commands
+```bash
+just help              # Show all commands
+just start             # Start development server
+just preview           # Production preview with HTTPS
+just build             # Build site
+just test              # Run test suite
+just deploy            # Build and deploy
+just status            # Project status
+just doctor            # System health check
 ```
 
 ## Project Structure

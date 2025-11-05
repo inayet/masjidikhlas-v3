@@ -12,28 +12,46 @@ Masjid Ikhlas is committed to Islamic way of life based on Qur'an and life examp
 
 ## 🚀 Quick Start
 
-### Development Environment
+### Using Just (Recommended)
+```bash
+# Start development server
+just start
+
+# Production preview with HTTPS
+just preview
+
+# Build and deploy
+just deploy
+
+# Run tests
+just test
+```
+
+### Using Nix Commands
 ```bash
 # Enter development environment
 nix develop
 
 # Start local development server
 hugo server --bind 0.0.0.0 --port 1313
-```
 
-### Production Build & Deploy
-```bash
 # Build and validate site
 nix run .#workflow
 
 # Start local HTTPS server (for testing)
 nix run .#serve
+```
 
-# Deploy to Netlify
-nix run .#deployNetlify -- /path/to/build/output
-
-# Deploy to GitHub Pages
-nix run .#deployGitHub -- /path/to/build/output
+### Quick Commands
+```bash
+just help              # Show all commands
+just start             # Start development server
+just preview           # Production preview with HTTPS
+just build             # Build site
+just test              # Run test suite
+just deploy            # Build and deploy
+just status            # Project status
+just doctor            # System health check
 ```
 
 ## 📁 Project Structure
@@ -51,13 +69,22 @@ masjidikhlasV3/
 │   └── themes/ikhlas/    # Custom theme
 │       ├── layouts/      # HTML templates
 │       └── static/       # CSS, JS, images
-├── content/               # Additional content (merged during build)
-├── .github/workflows/     # GitHub Actions
-│   └── deploy.yml        # Auto-deployment to GitHub Pages
-├── README.md             # This file
-├── AGENTS.md             # Development guidelines for AI agents
-├── DEVELOPMENT.md        # Detailed development setup
-└── DEPLOYMENT.md         # Deployment instructions
+├── scripts/              # Testing and validation scripts
+│   ├── README.md         # Script documentation
+│   ├── run-tests.sh      # Comprehensive test suite
+│   ├── test-build.sh     # Build validation
+│   ├── test-build-simple.sh # Quick validation
+│   └── validate-content.sh # Content validation
+├── content/              # Additional content (merged during build)
+├── .github/workflows/    # GitHub Actions
+│   └── deploy.yml       # Auto-deployment to GitHub Pages
+├── README.md            # This file
+├── AGENTS.md            # Development guidelines for AI agents
+├── DEVELOPMENT.md       # Detailed development setup
+├── DEPLOYMENT.md        # Deployment instructions
+├── TESTING.md           # Testing guidelines
+├── DEPLOYMENT_SUMMARY.md # Deployment status
+└── ORGANIZATION_SUMMARY.md # Project organization
 ```
 
 ## 🎨 Theme Features
@@ -80,6 +107,8 @@ masjidikhlasV3/
 ## 🛠️ Development Commands
 
 ### Testing & Validation
+
+#### Script-Based Testing
 ```bash
 # Comprehensive testing
 ./scripts/run-tests.sh              # Run all tests with reporting
@@ -89,6 +118,23 @@ masjidikhlasV3/
 
 # Quick validation before deployment
 ./scripts/test-build-simple.sh && ./scripts/validate-content.sh
+```
+
+#### Just-Based Testing (Recommended)
+```bash
+# Comprehensive testing
+just test                           # Full test suite (alias: just t)
+just test-build                     # Build validation only (alias: just tb)
+just test-content                   # Content validation only (alias: just tc)
+just test-quick                    # Quick validation (alias: just tq)
+
+# Quality checks
+just check-all                     # All quality checks
+just quick-check                   # Fast validation only
+just lint                          # Lint content
+just check-links                   # Check broken links
+just seo-check                     # SEO analysis
+just performance-test              # Performance testing
 ```
 
 ### Using Justfile (Recommended)

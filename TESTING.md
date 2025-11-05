@@ -4,7 +4,13 @@ This document describes the testing framework and procedures for the Masjid Ikhl
 
 ## 🧪 Test Suite Overview
 
-The project includes a comprehensive testing framework organized in the `scripts/` directory with four main components:
+The project includes a comprehensive testing framework with both script-based and Just-based testing:
+
+### Script-Based Testing (scripts/)
+Four main components in the `scripts/` directory:
+
+### Just-Based Testing (Recommended)
+Modern task runner integration for streamlined testing:
 
 ### 1. Build Tests (`scripts/test-build.sh`)
 Tests build process and validates output files.
@@ -67,6 +73,124 @@ Runs all test suites and generates a unified report.
 **Usage:**
 ```bash
 ./scripts/run-tests.sh
+```
+
+## Just-Based Testing (Recommended)
+
+### 1. Comprehensive Test Suite (`just test`)
+Runs all tests with comprehensive reporting.
+
+**Features:**
+- All script-based tests integrated
+- Enhanced error reporting
+- CI/CD friendly output
+- Performance metrics
+
+**Usage:**
+```bash
+just test          # Full test suite
+just t             # Short alias
+```
+
+### 2. Build Testing (`just test-build`)
+Focuses specifically on build process validation.
+
+**Usage:**
+```bash
+just test-build    # Build validation only
+just tb            # Short alias
+```
+
+### 3. Content Testing (`just test-content`)
+Validates content structure and quality.
+
+**Usage:**
+```bash
+just test-content  # Content validation only
+just tc            # Short alias
+```
+
+### 4. Quick Testing (`just test-quick`)
+Fast validation for pre-commit checks.
+
+**Usage:**
+```bash
+just test-quick    # Quick validation
+just tq            # Short alias
+```
+
+### 5. Quality Checks
+Additional quality assurance commands:
+
+```bash
+just check-all      # All quality checks
+just quick-check    # Fast validation only
+just lint           # Lint content
+just check-links    # Check broken links
+just seo-check      # SEO analysis
+just performance-test # Performance testing
+```
+
+## Testing Workflow
+
+### Pre-Commit Testing
+```bash
+just test-quick     # Fast validation
+```
+
+### Pre-Deployment Testing
+```bash
+just test           # Full test suite
+```
+
+### Continuous Integration
+```bash
+./scripts/run-tests.sh    # CI/CD integration
+```
+
+## Troubleshooting
+
+### Common Issues
+- **Permission denied**: Ensure scripts are executable (`chmod +x scripts/*.sh`)
+- **Nix not found**: Install Nix package manager
+- **Hugo not found**: Use `nix develop` or `just start`
+- **Test failures**: Check individual test outputs for details
+
+### Debug Commands
+```bash
+just doctor        # System health check
+just status        # Project status
+just deps          # Show dependencies
+```
+
+## Test Results Interpretation
+
+### Exit Codes
+- **0**: All tests passed
+- **1**: One or more tests failed
+- **2**: Prerequisites not met
+
+### Performance Benchmarks
+- **Build time**: < 100ms
+- **Site size**: < 10MB
+- **Page count**: 25 pages
+- **Load time**: < 2 seconds
+
+## Integration with Development Workflow
+
+### Smart Testing
+```bash
+just smart test     # Context-aware testing
+```
+
+### Watch Mode
+```bash
+just watch          # Auto-test on changes
+```
+
+### Before Deployment
+```bash
+just test && just deploy    # Test then deploy
 ```
 
 ### 2. Content Validation (`validate-content.sh`)

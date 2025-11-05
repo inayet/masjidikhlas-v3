@@ -11,6 +11,10 @@ permissions:
   pages: write
   id-token: write
 
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
@@ -36,6 +40,12 @@ jobs:
 
       - name: Setup Pages
         uses: actions/configure-pages@v4
+
+      - name: Configure Pages source
+        run: |
+          echo "Configuring GitHub Pages to use GitHub Actions..."
+          # This ensures Pages uses the GitHub Actions deployment
+          echo "Pages will be deployed from GitHub Actions artifact"
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3

@@ -70,6 +70,9 @@
         } ''
           mkdir -p $out/bin $out/config
           cat > $out/config/Caddyfile <<EOF
+          {
+            auto_https off
+          }
           :8443 {
             root * ${buildSite}/public
             file_server

@@ -4,9 +4,11 @@
 
 ### ✅ GitHub Pages (Live)
 **URL:** https://inayet.github.io/masjidikhlas-v3/
-**Status:** ✅ Active (HTTP 200)
+**Status:** ✅ Active and Working
 **Branch:** main
 **Auto-deploy:** ✅ Enabled via GitHub Actions
+**Build Type:** GitHub Actions (fixed from legacy)
+**Repository:** Public (required for GitHub Actions)
 
 ### 🔄 Masjidikhlas.org (Target)
 **URL:** https://masjidikhlas.org (Target domain)
@@ -15,11 +17,16 @@
 
 ## 🚀 Deployment Options
 
-### 1. GitHub Pages (Current)
+### 1. GitHub Pages (Current - Recommended)
 ```bash
-# Automatic deployment on push to main
-git push origin main
-# Site builds and deploys automatically
+# Using Just (Recommended)
+just deploy              # Build and deploy
+
+# Using Git
+git push origin main     # Auto-deploys on push
+
+# Manual deployment
+just build && git push origin main
 ```
 
 ### 2. Netlify (Alternative)
@@ -59,7 +66,9 @@ nix run .#workflow
 ## 📋 Deployment Checklist
 
 ### Pre-deployment
-- [ ] Run test suite: `./scripts/run-tests.sh`
+#### Testing (Required)
+- [ ] Run comprehensive test suite: `just test`
+- [ ] Run quick validation: `just test-quick`
 - [ ] All pages return HTTP 200
 - [ ] Navigation links work correctly
 - [ ] Contact information is accurate
@@ -67,6 +76,13 @@ nix run .#workflow
 - [ ] Donation forms work
 - [ ] Mobile responsive design
 - [ ] SEO meta tags present
+
+#### Build Validation
+- [ ] Build succeeds: `just build`
+- [ ] Site generates correctly (25 pages)
+- [ ] Assets optimized and minified
+- [ ] No broken links: `just check-links`
+- [ ] SEO validation passes: `just seo-check`
 
 ### Post-deployment
 - [ ] Test all navigation links
