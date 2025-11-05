@@ -30,7 +30,8 @@ jobs:
           export HUGO_ENV=github-pages
           cd site
           source ../scripts/set-env.sh
-          hugo --gc --minify --config config/github-pages/config.toml --baseURL "$HUGO_BASEURL"
+          echo "Using baseURL: $HUGO_BASEURL"
+          hugo --gc --minify --config config/github-pages/config.toml --baseURL "${HUGO_BASEURL}"
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
