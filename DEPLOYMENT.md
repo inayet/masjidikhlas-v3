@@ -59,6 +59,7 @@ nix run .#workflow
 ## 📋 Deployment Checklist
 
 ### Pre-deployment
+- [ ] Run test suite: `./scripts/run-tests.sh`
 - [ ] All pages return HTTP 200
 - [ ] Navigation links work correctly
 - [ ] Contact information is accurate
@@ -126,6 +127,9 @@ hugo server --bind 0.0.0.0 --port 1313
 
 # Test changes locally
 curl -I http://localhost:1313/
+
+# Run tests before deployment
+./scripts/run-tests.sh
 ```
 
 ### Updating Content

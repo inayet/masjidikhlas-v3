@@ -9,6 +9,7 @@ default:
     @echo "  new-page    - Create new page"
     @echo "  preview     - Preview production build"
     @echo "  status      - Check project health"
+    @echo "  test        - Run test suite"
     @echo "  clean       - Clean build files"
     @echo "  help        - Show detailed help"
 
@@ -254,6 +255,10 @@ help:
     @echo ""
     @echo "🔧 Maintenance:"
     @echo "• just status      - Check project health"
+    @echo "• just test        - Run comprehensive test suite"
+    @echo "• just test-build  - Run build tests only"
+    @echo "• just test-content- Run content validation only"
+    @echo "• just test-quick  - Run quick validation"
     @echo "• just clean       - Clean build files"
     @echo "• just doctor      - System health check"
     @echo ""
@@ -271,8 +276,10 @@ help:
     @echo "🔄 Typical Workflow:"
     @echo "1. just start           # Start development server"
     @echo "2. just edit-*          # Edit content (auto-refreshes)"
-    @echo "3. just preview         # Test production build"
-    @echo "4. just publish         # Deploy to GitHub Pages"
+    @echo "3. just test-quick      # Quick validation"
+    @echo "4. just preview         # Test production build"
+    @echo "5. just test           # Full test suite"
+    @echo "6. just publish         # Deploy to GitHub Pages"
 
 # Quick Aliases (hidden from --list)
 
@@ -296,6 +303,58 @@ h: help
 info: status
 [private]
 check: status
+[private]
+t: test
+[private]
+tb: test-build
+[private]
+tc: test-content
+[private]
+tq: test-quick
+
+[private]
+test:
+    # Run comprehensive test suite
+    @echo "🧪 Running comprehensive test suite..."
+    @if [ -f "scripts/run-tests.sh" ]; then \
+        ./scripts/run-tests.sh; \
+    else \
+        echo "❌ Test scripts not found in scripts/ directory"; \
+        exit 1; \
+    fi
+
+[private]
+test-build:
+    # Run build tests only
+    @echo "🏗️  Running build tests..."
+    @if [ -f "scripts/test-build.sh" ]; then \
+        ./scripts/test-build.sh; \
+    else \
+        echo "❌ Build test script not found"; \
+        exit 1; \
+    fi
+
+[private]
+test-content:
+    # Run content validation only
+    @echo "📝 Running content validation..."
+    @if [ -f "scripts/validate-content.sh" ]; then \
+        ./scripts/validate-content.sh; \
+    else \
+        echo "❌ Content validation script not found"; \
+        exit 1; \
+    fi
+
+[private]
+test-quick:
+    # Run quick validation
+    @echo "⚡ Running quick validation..."
+    @if [ -f "scripts/test-build-simple.sh" ]; then \
+        ./scripts/test-build-simple.sh; \
+    else \
+        echo "❌ Quick test script not found"; \
+        exit 1; \
+    fi
 
 [private]
 edit: edit-home

@@ -52,8 +52,21 @@ masjidikhlasV3/
 
 1. **Make changes** to content or theme files
 2. **Test locally** with `hugo server`
-3. **Validate build** with `nix run .#workflow`
-4. **Deploy** when ready
+3. **Run tests** with `./scripts/run-tests.sh`
+4. **Validate build** with `nix run .#workflow`
+5. **Deploy** when ready
+
+### Quick Testing
+```bash
+# Before committing
+./scripts/test-build-simple.sh
+
+# Full validation
+./scripts/run-tests.sh
+
+# Content checks only
+./scripts/validate-content.sh
+```
 
 ## Content Management
 
@@ -102,3 +115,6 @@ Tests at https://localhost:8443/
 - Add `--buildDrafts` to include draft content
 - Use `--gc --minify` for production builds
 - Check browser console for any issues
+- Run `./scripts/test-build-simple.sh` before committing
+- Use `./scripts/validate-content.sh` to check content quality
+- Full test suite with `./scripts/run-tests.sh` before deployment

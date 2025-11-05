@@ -4,10 +4,10 @@ This document describes the testing framework and procedures for the Masjid Ikhl
 
 ## 🧪 Test Suite Overview
 
-The project includes a comprehensive testing framework with three main components:
+The project includes a comprehensive testing framework organized in the `scripts/` directory with four main components:
 
-### 1. Build Tests (`test-build.sh`)
-Tests the build process and validates output files.
+### 1. Build Tests (`scripts/test-build.sh`)
+Tests build process and validates output files.
 
 **What it tests:**
 - Nix development environment setup
@@ -20,7 +20,53 @@ Tests the build process and validates output files.
 
 **Usage:**
 ```bash
-./test-build.sh
+./scripts/test-build.sh
+```
+
+### 2. Simple Build Test (`scripts/test-build-simple.sh`)
+Quick validation of core build functionality.
+
+**What it tests:**
+- Nix environment availability
+- Hugo build process
+- Output file generation
+
+**Usage:**
+```bash
+./scripts/test-build-simple.sh
+```
+
+### 3. Content Validation (`scripts/validate-content.sh`)
+Validates content structure, quality, and SEO elements.
+
+**What it validates:**
+- Content directory structure
+- Required content files
+- Front matter completeness
+- Content quality and length
+- Image references and availability
+- Theme file structure
+- Hugo configuration
+- Internal link integrity
+- SEO meta tags
+
+**Usage:**
+```bash
+./scripts/validate-content.sh
+```
+
+### 4. Comprehensive Test Runner (`scripts/run-tests.sh`)
+Runs all test suites and generates a unified report.
+
+**Features:**
+- Prerequisites checking
+- Sequential test execution
+- Comprehensive reporting
+- Exit codes for CI/CD integration
+
+**Usage:**
+```bash
+./scripts/run-tests.sh
 ```
 
 ### 2. Content Validation (`validate-content.sh`)
@@ -60,21 +106,27 @@ Runs all test suites and generates a unified report.
 
 ### Run All Tests
 ```bash
-./run-tests.sh
+./scripts/run-tests.sh
 ```
 
 ### Run Individual Test Suites
 ```bash
 # Test build process only
-./test-build.sh
+./scripts/test-build.sh
+
+# Quick build validation
+./scripts/test-build-simple.sh
 
 # Validate content only
-./validate-content.sh
+./scripts/validate-content.sh
 ```
 
 ### Quick Validation
 ```bash
 # Quick build test
+./scripts/test-build-simple.sh
+
+# Manual build test
 nix shell nixpkgs#hugo --command bash -c 'cd site && hugo --destination ../public --gc --minify'
 
 # Check essential files
@@ -116,8 +168,8 @@ The test suite can be integrated into GitHub Actions:
 ```yaml
 - name: Run Tests
   run: |
-    chmod +x ./run-tests.sh
-    ./run-tests.sh
+    chmod +x ./scripts/run-tests.sh
+    ./scripts/run-tests.sh
 ```
 
 ### Pre-commit Hook
@@ -125,7 +177,7 @@ Add to `.git/hooks/pre-commit`:
 
 ```bash
 #!/bin/bash
-./run-tests.sh
+./scripts/run-tests.sh
 ```
 
 ### Manual Testing Before Deployment
@@ -133,10 +185,13 @@ Always run tests before deploying:
 
 ```bash
 # Full test suite
-./run-tests.sh
+./scripts/run-tests.sh
 
 # Quick validation
-./test-build.sh && ./validate-content.sh
+./scripts/test-build-simple.sh && ./scripts/validate-content.sh
+
+# Build validation only
+./scripts/test-build.sh
 ```
 
 ## 🐛 Troubleshooting
@@ -164,8 +219,9 @@ Always run tests before deploying:
 Run tests with verbose output:
 
 ```bash
-bash -x ./test-build.sh
-bash -x ./validate-content.sh
+bash -x ./scripts/test-build.sh
+bash -x ./scripts/validate-content.sh
+bash -x ./scripts/run-tests.sh
 ```
 
 ### Test Output Interpretation

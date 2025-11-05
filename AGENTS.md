@@ -17,7 +17,11 @@
 - Use ripgrep for content validation and searching
 - All deployments should be read-only static assets
 
-## Testing
+## Testing & Validation
+- **Comprehensive testing**: `./scripts/run-tests.sh`
+- **Build validation**: `./scripts/test-build.sh`
+- **Quick validation**: `./scripts/test-build-simple.sh`
+- **Content validation**: `./scripts/validate-content.sh`
 - Validate content structure with `nix run .#workflow`
 - Test locally with `nix run .#serve` before deployment
-- No unit tests - focus on content validation and build verification
+- Focus on content validation and build verification

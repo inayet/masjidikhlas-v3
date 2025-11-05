@@ -79,6 +79,18 @@ masjidikhlasV3/
 
 ## 🛠️ Development Commands
 
+### Testing & Validation
+```bash
+# Comprehensive testing
+./scripts/run-tests.sh              # Run all tests with reporting
+./scripts/test-build.sh             # Build process validation
+./scripts/validate-content.sh        # Content quality checks
+./scripts/test-build-simple.sh       # Quick validation
+
+# Quick validation before deployment
+./scripts/test-build-simple.sh && ./scripts/validate-content.sh
+```
+
 ### Using Justfile (Recommended)
 Install `just` and run `just` to see all available commands.
 
@@ -122,6 +134,11 @@ just lint            # Lint content
 just check-links     # Check broken links
 just seo-check       # SEO analysis
 just performance-test # Performance testing
+
+# Script-based testing
+./scripts/run-tests.sh              # Full test suite
+./scripts/test-build.sh             # Build validation
+./scripts/validate-content.sh        # Content validation
 ```
 
 #### 🌐 Development & Deployment
@@ -140,6 +157,9 @@ just workflow        # Full Nix workflow
 just deploy          # Build and deploy
 just push            # Push to GitHub
 just sync            # Pull and rebuild
+
+# Script-based deployment
+./scripts/test-build-simple.sh && git push origin main
 ```
 
 #### ⚡ Quick Aliases
@@ -383,10 +403,12 @@ just watch           # Auto-rebuild on changes
 ### Pre-commit Checklist
 ```bash
 # Automated pre-commit check
-just check-all      # Runs all checks automatically
+./scripts/run-tests.sh              # Runs all tests automatically
 
 # Or manual checklist:
-- [ ] Content validates: `just validate`
+- [ ] Content validates: `./scripts/validate-content.sh`
+- [ ] Build works: `./scripts/test-build.sh`
+- [ ] Quick validation: `./scripts/test-build-simple.sh`
 - [ ] No broken links: `just check-links`
 - [ ] Images optimized: `just image-optimize`
 - [ ] SEO checks pass: `just seo-check`
@@ -432,6 +454,11 @@ nix flake show        # Show all flake outputs
 
 # Search for tools
 just search-tool html-proofer  # Find available packages
+
+# Run tests for debugging
+./scripts/run-tests.sh              # Full test suite
+./scripts/test-build.sh             # Build issues
+./scripts/validate-content.sh        # Content issues
 
 # Common issues
 just clean            # Clean build artifacts
