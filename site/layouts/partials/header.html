@@ -3,7 +3,7 @@
         <div class="header-content">
             <div class="logo">
                 <a href="{{ .Site.BaseURL }}">
-                    <img src="{{ .Site.Params.logo | default "/images/logo.png" }}" alt="{{ .Site.Title }}">
+                    <img src="{{ .Site.Params.logo | default "/images/logo.png" | absURL }}" alt="{{ .Site.Title }}">
                     <span class="site-title">{{ .Site.Title }}</span>
                 </a>
             </div>
