@@ -12,20 +12,20 @@
     <meta property="og:description" content="{{ .Params.description | default .Site.Params.description }}">
     <meta property="og:type" content="website">
     <meta property="og:url" content="{{ .Permalink }}">
-    <meta property="og:image" content="{{ .Site.Params.logo | absURL }}">
+    <meta property="og:image" content="{{ .Site.BaseURL }}images/logo.png">
     
     <!-- Twitter Card Meta Tags -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="{{ .Title }} - {{ .Site.Title }}">
     <meta name="twitter:description" content="{{ .Params.description | default .Site.Params.description }}">
-    <meta name="twitter:image" content="{{ .Site.Params.logo | absURL }}">
+    <meta name="twitter:image" content="{{ .Site.BaseURL }}images/logo.png">
     
     <!-- CSS -->
     <link rel="stylesheet" href="{{ "css/style.css" | absURL }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     
     <!-- Favicon -->
-    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="icon" type="image/x-icon" href="{{ "favicon.ico" | absURL }}">
     
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">

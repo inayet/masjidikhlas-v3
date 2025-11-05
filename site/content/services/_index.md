@@ -88,4 +88,4 @@ Full-day Islamic summer camp for ages 7-15
 - Community integration support
 - Weekly support group meetings
 
-For more information about any of our services, please [contact us](/contact/).
+For more information about any of our services, please [contact us]({{< relref "contact/" >}}).

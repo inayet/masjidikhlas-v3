@@ -24,7 +24,7 @@ Masjid Ikhlas is committed to Islamic way of life based on Qur'an and life examp
 | Isha   | 5:56 PM | 6:06 PM |
 | Jumuah | 12:30 PM | - |
 
-[MONTHLY PRAYER CALENDAR](/monthly-prayer-schedule/)
+[MONTHLY PRAYER CALENDAR]({{< relref "monthly-prayer-schedule/" >}})
 
 ## Announcements
 
@@ -58,10 +58,10 @@ Quranic recitation and memorization programs.
 
 Contribute to Masjid Ikhlas
 
-- **[Donate](/donate/)** - Credit/Debit Cards, Checks, etc.
-- **[Become a Member](/membership/)** - Participate in community
-- **[Volunteer](/volunteer/)** - Lend a helping hand
-- **[Business Directory](/)** - Support local Muslim businesses (Coming soon)
+- **[Donate]({{< relref "donate/" >}})** - Credit/Debit Cards, Checks, etc.
+- **[Become a Member]({{< relref "membership/" >}})** - Participate in community
+- **[Volunteer]({{< relref "volunteer/" >}})** - Lend a helping hand
+- **[Business Directory]({{< relref "/" >}})** - Support local Muslim businesses (Coming soon)
 
 ## Connect With Us
 
