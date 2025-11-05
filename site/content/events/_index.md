@@ -72,7 +72,7 @@ Strengthening marital relationships through Islamic principles.
 
 ## Upcoming Events Calendar
 
-<iframe src="https://calendar.google.com/calendar/embed?src=test-community-site@gmail.com" style="border: 0" width="800" height="600" frameborder="0" scrolling="no"></iframe>
+<iframe src="https://calendar.google.com/calendar/embed?src=masjidikhlas@gmail.com" style="border: 0" width="800" height="600" frameborder="0" scrolling="no"></iframe>
 
 *For the most up-to-date information, please subscribe to our newsletter or follow us on social media.*
 

@@ -34,7 +34,7 @@ We feel that in this day and age, one of the most important things is to keep ou
 
 ## Registration
 
-For any questions or suggestions please email **academy@CO**. We would love to hear from you!
+For any questions or suggestions please email **academy@masjidikhlas.org**. We would love to hear from you!
 
 ### [Click Here For The Registration Form](https://forms.gle/PNY3TfnHFBuwbk316)
 
@@ -44,7 +44,7 @@ For any questions or suggestions please email **academy@CO**. We would love to h
 
 ## Contact Information
 
-**Email:** academy@CO  
+**Email:** academy@masjidikhlas.org  
 **Phone:** 303-920-0252  
 **Address:** 11141 N Irma Drive, Northglenn, CO 80233
 

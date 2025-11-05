@@ -6,9 +6,9 @@ draft: false
 
 # Donate
 
-## Support Test Mosque
+## Support Masjid Ikhlas
 
-Test Mosque relies entirely on the generous support of our community to continue providing essential services to the Metropolitan Denver North Muslim community. Your contributions help us maintain our facilities, offer educational programs, and serve those in need.
+Masjid Ikhlas relies entirely on the generous support of our community to continue providing essential services to the Metropolitan Denver North Muslim community. Your contributions help us maintain our facilities, offer educational programs, and serve those in need.
 
 ## Ways to Give
 
@@ -22,7 +22,7 @@ Make a secure online donation using credit/debit cards or bank transfer.
 - **$250/month** - Supports our outreach programs
 
 ### Zakat and Sadaqah
-Fulfill your religious obligations through Test Mosque.
+Fulfill your religious obligations through Masjid Ikhlas.
 
 **Zakat Eligible Programs:**
 - Educational scholarships for needy students
@@ -45,7 +45,7 @@ Visit us during office hours:
 - **Office Hours:** Monday - Friday, 9:00 AM - 5:00 PM
 
 ### By Mail
-Test Mosque  
+Masjid Ikhlas  
 11141 N Irma Drive  
 Northglenn, CO 80233  
 USA
@@ -63,12 +63,12 @@ Support local Muslim businesses that contribute to our community (Coming soon).
 
 ## Tax Information
 
-Test Mosque is a registered 501(c)(3) nonprofit organization. All donations are tax-deductible to the extent allowed by law.
+Masjid Ikhlas is a registered 501(c)(3) nonprofit organization. All donations are tax-deductible to the extent allowed by law.
 
 ## Questions?
 
 For more information about donation opportunities, please contact us at:
-- **Email:** CO
+- **Email:** office@masjidikhlas.org
 - **Phone:** 303-920-0252
 
 ---

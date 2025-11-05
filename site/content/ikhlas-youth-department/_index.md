@@ -108,17 +108,17 @@ We welcome volunteers to help with:
 ## Contact Information
 
 **Youth Department**  
-Test Mosque  
+Masjid Ikhlas  
 11141 N Irma Drive, Northglenn, CO 80233  
-**Email:** youth@CO  
+**Email:** youth@masjidikhlas.org  
 **Phone:** 303-920-0252  
 **Office Hours:** Monday - Thursday, 10:00 AM - 6:00 PM
 
 ## Social Media
 
 Follow us for updates and announcements:
-- **Instagram:** @testmosque
-- **Facebook:** /Denver
+- **Instagram:** @masjidikhlas
+- **Facebook:** /masjidikhlas
 - **Youth Group Chat:** Contact for details
 
 ---

@@ -6,9 +6,9 @@ draft: false
 
 # Outreach Department
 
-Test Mosque's outreach team focuses on teaching about Islam to the Greater Denver community while hosting different events. Our Masjid open house is every 1st Saturday of the month from 2:30 - 5 pm. It is free and open to the public.
+Masjid Ikhlas's outreach team focuses on teaching about Islam to Greater Denver community while hosting different events. Our Masjid open house is every 1st Saturday of the month from 2:30 - 5 pm. It is free and open to the public.
 
-If you have any questions regarding Islam, want to schedule a mosque visit or request a speaker, please contact us at **outreach@CO** and we will be happy to talk to you.
+If you have any questions regarding Islam, want to schedule a mosque visit or request a speaker, please contact us at **outreach@masjidikhlas.org** and we will be happy to talk to you.
 
 ## Programs & Services
 
@@ -21,7 +21,7 @@ Educational presentations about Islam for schools, organizations, and community 
 - Islamic contributions to civilization
 
 ### Mosque Tours
-Guided tours of Test Mosque facility for:
+Guided tours of Masjid Ikhlas facility for:
 - School groups
 - Interfaith organizations
 - Community groups
@@ -54,7 +54,7 @@ Join our outreach team to help with:
 
 ### For Schools & Organizations
 To schedule a presentation or tour:
-- **Email:** outreach@CO
+- **Email:** outreach@masjidikhlas.org
 - **Phone:** 303-920-0252
 - **Please provide:** Preferred date, group size, topics of interest
 
@@ -82,11 +82,11 @@ We work with local organizations to promote:
 ## Contact Information
 
 **Outreach Department**  
-Test Mosque  
+Masjid Ikhlas  
 11141 N Irma Drive, Northglenn, CO 80233  
-**Email:** outreach@CO  
+**Email:** outreach@masjidikhlas.org  
 **Phone:** 303-920-0252  
-**Website:** www.test-community-site.org
+**Website:** www.masjidikhlas.org
 
 ---
 

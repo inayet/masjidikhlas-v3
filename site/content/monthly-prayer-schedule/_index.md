@@ -53,12 +53,12 @@ Sign up for daily prayer time reminders via:
 - SMS text messages
 - Mobile app notifications
 
-Contact the office to subscribe: CO
+Contact the office to subscribe: office@masjidikhlas.org
 
 ## Questions About Prayer Times
 
 For questions about prayer times or calculation methods, please contact:
-- **Email:** CO
+- **Email:** office@masjidikhlas.org
 - **Phone:** 303-920-0252
 
 ---

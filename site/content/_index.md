@@ -1,14 +1,14 @@
 ---
-title: "Welcome to Test Mosque"
+title: "Welcome to Masjid Ikhlas"
 date: 2024-01-01T00:00:00Z
 draft: false
 ---
 
-# Test Mosque
+# Masjid Ikhlas
 
 ## Metropolitan Denver North Islamic Center
 
-Test Mosque is committed to Islamic way of life based on Qur'an and life example of Prophet Muhammad (Peace be upon him). We serve as a center for religious development, social, educational, economic, and cultural enrichment. We believe in Oneness of Allah (God) and oneness of humanity. **"Faith in Allah, Simple Living, Hard Work & High Thinking."**
+Masjid Ikhlas is committed to Islamic way of life based on Qur'an and life example of Prophet Muhammad (Peace be upon him). We serve as a center for religious development, social, educational, economic, and cultural enrichment. We believe in Oneness of Allah (God) and oneness of humanity. **"Faith in Allah, Simple Living, Hard Work & High Thinking."**
 
 ## Prayer Times
 
@@ -28,13 +28,13 @@ Test Mosque is committed to Islamic way of life based on Qur'an and life example
 
 ## Announcements
 
-Latest announcements and events at Test Mosque
+Latest announcements and events at Masjid Ikhlas
 
 ### Eid Mubarak
 **July 8, 2022**
 Join us for Eid celebrations and prayers.
 
-### COVID-19 Vaccine Clinic
+### Community Health Initiative
 **April 27, 2021**
 Community health and safety initiative.
 
@@ -56,7 +56,7 @@ Quranic recitation and memorization programs.
 
 ## Supporting Our Community
 
-Contribute to Test Mosque
+Contribute to Masjid Ikhlas
 
 - **[Donate](/donate/)** - Credit/Debit Cards, Checks, etc.
 - **[Become a Member](/membership/)** - Participate in community
