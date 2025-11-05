@@ -1,0 +1,12 @@
+name = "Ikhlas"
+license = "MIT"
+licenselink = "https://github.com/inayet/masjidikhlas-v3/blob/main/LICENSE"
+description = "Custom theme for Masjid Ikhlas website"
+homepage = "https://inayet.github.io/masjidikhlas-v3/"
+tags = ["responsive", "islamic", "mosque", "community"]
+features = ["responsive", "multilingual", "seo"]
+min_version = "0.115.0"
+
+[author]
+  name = "Masjid Ikhlas Development Team"
+  homepage = "https://inayet.github.io/masjidikhlas-v3/"

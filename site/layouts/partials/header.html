@@ -1,0 +1,33 @@
+<header class="site-header">
+    <div class="container">
+        <div class="header-content">
+            <div class="logo">
+                <a href="{{ .Site.BaseURL }}">
+                    <img src="{{ .Site.Params.logo | default "/images/logo.png" }}" alt="{{ .Site.Title }}">
+                    <span class="site-title">{{ .Site.Title }}</span>
+                </a>
+            </div>
+            
+            <nav class="main-nav">
+                <ul>
+                    {{ range .Site.Menus.main }}
+                    <li>
+                        <a href="{{ .URL }}"{{ if eq .URL $.Permalink }} class="active"{{ end }}>
+                            {{ .Name }}
+                        </a>
+                    </li>
+                    {{ end }}
+                </ul>
+            </nav>
+            
+            <div class="header-actions">
+                <a href="/donate/" class="btn btn-primary btn-sm">Donate</a>
+                <button class="mobile-menu-toggle" aria-label="Toggle mobile menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </div>
+    </div>
+</header>

@@ -1,0 +1,136 @@
+{{ define "main" }}
+<section class="hero">
+    <div class="container">
+        <div class="hero-content">
+            <h1>{{ .Title }}</h1>
+            <p class="hero-description">{{ .Params.description | default .Site.Params.description }}</p>
+            <div class="hero-buttons">
+                <a href="/about/" class="btn btn-primary">Learn More</a>
+                <a href="/donate/" class="btn btn-secondary">Support Us</a>
+            </div>
+        </div>
+        <div class="hero-image">
+            <img src="/images/mosque-hero.jpg" alt="Masjid Ikhlas">
+        </div>
+    </div>
+</section>
+
+<section class="prayer-times">
+    <div class="container">
+        <h2>Daily Prayer Times</h2>
+        <div class="prayer-grid">
+            <div class="prayer-item">
+                <span class="prayer-name">Fajr</span>
+                <span class="prayer-time">5:30 AM</span>
+            </div>
+            <div class="prayer-item">
+                <span class="prayer-name">Dhuhr</span>
+                <span class="prayer-time">1:00 PM</span>
+            </div>
+            <div class="prayer-item">
+                <span class="prayer-name">Asr</span>
+                <span class="prayer-time">4:30 PM</span>
+            </div>
+            <div class="prayer-item">
+                <span class="prayer-name">Maghrib</span>
+                <span class="prayer-time">7:00 PM</span>
+            </div>
+            <div class="prayer-item">
+                <span class="prayer-name">Isha</span>
+                <span class="prayer-time">8:30 PM</span>
+            </div>
+        </div>
+        <p class="prayer-note">*Times may vary slightly based on the season</p>
+    </div>
+</section>
+
+<section class="features">
+    <div class="container">
+        <h2>Our Community Services</h2>
+        <div class="feature-grid">
+            <div class="feature-item">
+                <div class="feature-icon">
+                    <i class="fas fa-pray"></i>
+                </div>
+                <h3>Daily Prayers</h3>
+                <p>Five daily prayers in congregation with clean, peaceful facilities</p>
+            </div>
+            <div class="feature-item">
+                <div class="feature-icon">
+                    <i class="fas fa-graduation-cap"></i>
+                </div>
+                <h3>Islamic Education</h3>
+                <p>Weekend school, adult classes, and Quranic studies for all ages</p>
+            </div>
+            <div class="feature-item">
+                <div class="feature-icon">
+                    <i class="fas fa-hands-helping"></i>
+                </div>
+                <h3>Community Support</h3>
+                <p>Food pantry, counseling services, and assistance for those in need</p>
+            </div>
+            <div class="feature-item">
+                <div class="feature-icon">
+                    <i class="fas fa-calendar-alt"></i>
+                </div>
+                <h3>Events & Programs</h3>
+                <p>Regular community events, workshops, and family activities</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="upcoming-events">
+    <div class="container">
+        <h2>Upcoming Events</h2>
+        <div class="event-list">
+            <div class="event-item">
+                <div class="event-date">
+                    <span class="day">Every</span>
+                    <span class="month">Friday</span>
+                </div>
+                <div class="event-details">
+                    <h3>Friday Jumu'ah</h3>
+                    <p>1:00 PM - Weekly congregational prayer and sermon</p>
+                </div>
+            </div>
+            <div class="event-item">
+                <div class="event-date">
+                    <span class="day">Sat-Sun</span>
+                    <span class="month">Weekly</span>
+                </div>
+                <div class="event-details">
+                    <h3>Weekend Islamic School</h3>
+                    <p>10:00 AM - 12:00 PM - Quranic studies for children</p>
+                </div>
+            </div>
+            <div class="event-item">
+                <div class="event-date">
+                    <span class="day">Every</span>
+                    <span class="month">Wednesday</span>
+                </div>
+                <div class="event-details">
+                    <h3>Sisters' Circle</h3>
+                    <p>10:00 AM - 12:00 PM - Women's gathering and learning</p>
+                </div>
+            </div>
+        </div>
+        <div class="events-cta">
+            <a href="/events/" class="btn btn-outline">View All Events</a>
+        </div>
+    </div>
+</section>
+
+<section class="cta">
+    <div class="container">
+        <div class="cta-content">
+            <h2>Join Our Community</h2>
+            <p>Whether you're looking for a place to pray, seeking knowledge, or wanting to contribute to our community programs, Masjid Ikhlas welcomes you with open arms.</p>
+            <div class="cta-buttons">
+                <a href="/contact/" class="btn btn-primary">Get in Touch</a>
+                <a href="/donate/" class="btn btn-secondary">Support Our Work</a>
+            </div>
+        </div>
+    </div>
+</section>
+{{ end }}
