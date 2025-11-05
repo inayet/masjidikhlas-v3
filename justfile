@@ -21,7 +21,7 @@ start:
     @echo "💡 Press Ctrl+C to stop the server"
     @echo ""
     @echo "📦 Starting Hugo server..."
-    nix develop -c "hugo server --bind 0.0.0.0 --port 1313 --buildDrafts --buildFuture --navigateToChanged --baseURL http://localhost:1313"
+    nix develop -c bash -c 'cd "$(git rev-parse --show-toplevel)/site" && hugo server --bind 0.0.0.0 --port 1313 --buildDrafts --buildFuture --navigateToChanged --baseURL http://localhost:1313'
 
 publish:
     # Complete deployment to GitHub Pages (always in Nix environment)
@@ -40,7 +40,7 @@ publish:
     @echo "✅ No uncommitted changes"
     @echo ""
     @echo "📦 Building site in Nix development environment..."
-    nix develop -c "hugo --minify --gc"
+    nix develop -c bash -c 'cd "$(git rev-parse --show-toplevel)/site" && hugo --minify --gc'
     @echo ""
     @echo "🚀 Deploying to remote..."
     git push origin main
@@ -53,13 +53,13 @@ preview:
     # Preview production build locally with HTTPS (always in Nix environment)
     @echo "🔍 Building production preview..."
     @echo "📦 Building in Nix development environment..."
-    nix develop -c "hugo --minify --gc"
+    nix develop -c bash -c 'cd "$(git rev-parse --show-toplevel)/site" && hugo --minify --gc'
     @echo ""
     @echo "🌐 Starting HTTPS preview server..."
     @echo "📍 Site will be available at: https://localhost:8443"
     @echo "💡 Press Ctrl+C to stop"
     @echo "⚠️  Browser may show security warning (self-signed certificate)"
-    nix run .#serve
+    nix develop -c bash -c 'cd "$(git rev-parse --show-toplevel)" && nix run .#serve'
 
 status:
     # Show comprehensive project status
@@ -223,7 +223,7 @@ new-page name:
 clean:
     # Clean build artifacts and temporary files
     @echo "🧹 Cleaning build files..."
-    nix develop -c "rm -rf public/ resources/ .hugo_build.lock"
+    nix develop -c bash -c 'cd "$(git rev-parse --show-toplevel)/site" && rm -rf public/ resources/ .hugo_build.lock'
     @echo "✅ Build files cleaned"
     @echo ""
     @echo "💡 Run 'just start' to rebuild and start development"
