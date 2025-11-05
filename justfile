@@ -62,39 +62,18 @@ publish:
     fi
     @echo "✅ No uncommitted changes"
     @echo ""
-    @echo "🔧 Detecting repository..."
-    @REPO_URL=$$(git config --get remote.origin.url || echo ""); \
-    if [ -z "$$REPO_URL" ]; then \
-        echo "❌ No git remote found. Please set up repository first."; \
-        exit 1; \
-    fi
-    @REPO_NAME=$$(basename "$$REPO_URL" .git); \
-    @USERNAME=$$(basename "$$(dirname "$$REPO_URL")"); \
-    if echo "$$REPO_URL" | grep -q "github.com"; then \
-        BASE_URL="https://$$USERNAME.github.io/$$REPO_NAME"; \
-        echo "📍 GitHub Pages URL: $$BASE_URL"; \
-    else \
-        BASE_URL="https://your-domain.com"; \
-        echo "⚠️  Non-GitHub repository detected"; \
-        echo "📍 Will use custom domain: $$BASE_URL"; \
-    fi
-    @echo ""
-    @echo "🏗️  Building site for deployment..."
+    @echo "🔧 Building site for deployment..."
     @if ! command -v hugo >/dev/null 2>&1; then \
-        nix develop -c "cd site && hugo --minify --gc --baseURL $$BASE_URL"; \
+        nix develop -c "cd site && hugo --minify --gc"; \
     else \
-        cd site && hugo --minify --gc --baseURL $$BASE_URL; \
+        cd site && hugo --minify --gc; \
     fi
     @echo ""
     @echo "🚀 Deploying to remote..."
     git push origin main
     @echo ""
     @echo "🎉 Published successfully!"
-    @if echo "$$REPO_URL" | grep -q "github.com"; then \
-        echo "🌐 Live at: $$BASE_URL"; \
-    else \
-        echo "🌐 Configure your domain to point to deployed files"; \
-    fi
+    @echo "🌐 Repository: $(git remote get-url origin 2>/dev/null || echo 'Not configured')"
     @echo "⏱️  Deployment may take 1-2 minutes to update"
 
 preview:
