@@ -21,7 +21,7 @@ start:
     @echo "💡 Press Ctrl+C to stop the server"
     @echo ""
     @echo "📦 Starting Hugo server..."
-    nix develop -c bash -c 'cd "$(git rev-parse --show-toplevel)/site" && hugo server --bind 0.0.0.0 --port 1313 --buildDrafts --buildFuture --navigateToChanged --baseURL http://localhost:1313'
+    nix develop -c bash -c 'cd "$(git rev-parse --show-toplevel)/site" && hugo server --bind 0.0.0.0 --port 1313 --buildDrafts --buildFuture --navigateToChanged --baseURL http://localhost:1313 --disableFastRender'
 
 publish:
     # Complete deployment to GitHub Pages (always in Nix environment)
