@@ -51,7 +51,6 @@ publish:
     @echo "⏱️  Deployment may take 1-2 minutes to update"
 
 preview:
-    # Preview production build locally with HTTPS (always in Nix environment)
     @echo "🔍 Building production preview..."
     @echo "📦 Building in Nix development environment..."
     nix develop -c bash -c 'cd "$(git rev-parse --show-toplevel)/site" && hugo --minify --gc'
@@ -59,7 +58,7 @@ preview:
     @echo "🌐 Starting HTTP preview server..."
     @echo "📍 Site will be available at: http://localhost:8080"
     @echo "💡 Press Ctrl+C to stop"
-    nix develop -c bash -c 'cd "$(git rev-parse --show-toplevel)" && nix run .#serve'
+    nix develop -c bash -c 'cd "$(git rev-parse --show-toplevel)/site" && hugo server --port 8080 --bind 0.0.0.0 --disableFastRender'
 
 status:
     # Show comprehensive project status
