@@ -22,7 +22,7 @@ start:
     @echo "💡 Press Ctrl+C to stop the server"
     @echo ""
     @echo "📦 Starting Hugo server..."
-    nix develop -c bash -c 'cd "$(git rev-parse --show-toplevel)" && source scripts/set-env.sh && cd site && hugo server --bind 0.0.0.0 --port 1313 --buildDrafts --buildFuture --navigateToChanged --disableFastRender'
+    nix develop -c bash -c 'cd "$(git rev-parse --show-toplevel)" && source scripts/set-env.sh && cd site && hugo server --bind 0.0.0.0 --port 1313 --buildDrafts --buildFuture --navigateToChanged --disableFastRender --config config/local/config.toml'
 
 publish:
     # Complete deployment to GitHub Pages (always in Nix environment)
@@ -41,7 +41,7 @@ publish:
     @echo "✅ No uncommitted changes"
     @echo ""
     @echo "📦 Building site in Nix development environment..."
-    nix develop -c bash -c 'cd "$(git rev-parse --show-toplevel)" && source scripts/set-env.sh && cd site && hugo --minify --gc'
+    nix develop -c bash -c 'cd "$(git rev-parse --show-toplevel)" && source scripts/set-env.sh && cd site && hugo --minify --gc --config config/github-pages/config.toml'
     @echo ""
     @echo "🚀 Deploying to remote..."
     git push origin $(git branch --show-current)
