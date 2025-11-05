@@ -63,9 +63,10 @@ publish:
     @echo "✅ No uncommitted changes"
     @echo ""
     @echo "🔧 Detecting repository..."
-    @REPO_URL=$$(git config --get remote.origin.url); \
+    @echo "🔧 Detecting repository..."
+    @REPO_URL=$$(git config --get remote.origin.url || echo ""); \
     if [ -z "$$REPO_URL" ]; then \
-        echo "❌ No git remote found. Please set up GitHub repository first."; \
+        echo "❌ No git remote found. Please set up repository first."; \
         exit 1; \
     fi; \
     REPO_NAME=$$(basename "$$REPO_URL" .git); \
