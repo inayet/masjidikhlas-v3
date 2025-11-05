@@ -44,11 +44,11 @@ publish:
     nix develop -c bash -c 'cd "$(git rev-parse --show-toplevel)" && source scripts/set-env.sh && cd site && hugo --minify --gc'
     @echo ""
     @echo "🚀 Deploying to remote..."
-    git push origin main
+    git push origin $(git branch --show-current)
     @echo ""
     @echo "🎉 Published successfully!"
     @echo "🌐 Repository: $(git remote get-url origin 2>/dev/null || echo 'Not configured')"
-    @echo "🌐 Live Site: https://$(git config --get remote.origin.url | sed -n 's|.*github.com[:/]\([^/]*\)/\(.*\)\.git|\1.github.io/\2|p')/"
+    @echo "🌐 Live Site: https://inayet.github.io/masjidikhlas-v3/"
     @echo "⏱️  Deployment may take 1-2 minutes to update"
 
 preview:
