@@ -1,0 +1,104 @@
+# Development Guide
+
+## Quick Start
+
+### 1. Enter Development Environment
+```bash
+nix develop
+```
+This automatically changes to the `site/` directory where Hugo files are located.
+
+### 2. Start Local Development Server
+```bash
+hugo server --bind 0.0.0.0 --port 1313
+```
+The site will be available at http://localhost:1313/
+
+### 3. Alternative: Use Nix Commands
+```bash
+# From project root
+nix run .#serve    # HTTPS server on localhost:8443
+nix run .#workflow # Build and validate
+```
+
+## Project Structure
+
+```
+masjidikhlasV3/
+├── flake.nix              # Nix configuration
+├── site/                  # Hugo site (run commands from here)
+│   ├── hugo.toml         # Hugo config
+│   ├── content/           # Markdown content
+│   └── themes/ikhlas/    # Custom theme
+├── content/               # Additional content (merged during build)
+└── AGENTS.md             # Development guidelines
+```
+
+## Common Issues & Solutions
+
+### "Unable to locate config file"
+**Problem:** Running Hugo from wrong directory  
+**Solution:** Always run Hugo commands from inside the `site/` directory
+
+### Build lock errors
+**Problem:** Permission issues with Nix store  
+**Solution:** Use `nix run .#workflow` instead of direct Hugo build
+
+### Content not updating
+**Problem:** Hugo caching old content  
+**Solution:** Add `--disableFastRender` flag or restart server
+
+## Development Workflow
+
+1. **Make changes** to content or theme files
+2. **Test locally** with `hugo server`
+3. **Validate build** with `nix run .#workflow`
+4. **Deploy** when ready
+
+## Content Management
+
+### Adding New Pages
+1. Create `.md` file in `site/content/`
+2. Add front matter:
+```yaml
+---
+title: "Page Title"
+date: 2024-01-01T00:00:00Z
+draft: false
+---
+```
+
+### Updating Navigation
+Edit `site/hugo.toml` menu section:
+```toml
+[[menu.main]]
+  name = "Page Name"
+  url = "/page-url/"
+  weight = 10
+```
+
+### Theme Customization
+- **CSS:** `site/themes/ikhlas/static/css/style.css`
+- **JS:** `site/themes/ikhlas/static/js/script.js`
+- **Layouts:** `site/themes/ikhlas/layouts/`
+
+## Deployment
+
+### Production Build
+```bash
+nix run .#workflow
+```
+Output path shown in command output.
+
+### Local HTTPS Testing
+```bash
+nix run .#serve
+```
+Tests at https://localhost:8443/
+
+## Tips
+
+- Use `hugo server --navigateToChanged` to auto-open changed files
+- Add `--buildDrafts` to include draft content
+- Use `--gc --minify` for production builds
+- Check browser console for any issues

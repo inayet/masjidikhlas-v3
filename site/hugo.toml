@@ -1,0 +1,49 @@
+baseURL = 'https://masjidikhlas.org'
+languageCode = 'en-us'
+title = 'Masjid Ikhlas'
+theme = 'ikhlas'
+
+[params]
+  description = "Metropolitan Denver North Islamic Center - Masjid Ikhlas is committed to Islamic way of life based on Qur'an and life example of Prophet Muhammad (Peace be upon him)."
+  author = "Masjid Ikhlas"
+  logo = "/images/logo.png"
+  contact_email = "office@masjidikhlas.org"
+  phone = "303-920-0252"
+  address = "11141 N Irma Drive, Northglenn, CO 80233, USA"
+
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true
+
+[menu]
+  [[menu.main]]
+    name = "Home"
+    url = "/"
+    weight = 10
+  [[menu.main]]
+    name = "About Us"
+    url = "/about/"
+    weight = 20
+  [[menu.main]]
+    name = "Prayer Schedule"
+    url = "/monthly-prayer-schedule/"
+    weight = 30
+  [[menu.main]]
+    name = "Programs"
+    url = "/services/"
+    weight = 40
+  [[menu.main]]
+    name = "Donate"
+    url = "/donate/"
+    weight = 50
+  [[menu.main]]
+    name = "Contact Us"
+    url = "/contact/"
+    weight = 60
+
+[social]
+  facebook = "https://facebook.com/masjidikhlasco"
+  instagram = "https://instagram.com/masjidikhlasco"
+  twitter = "https://twitter.com/masjidikhlasco"
+  youtube = "https://youtube.com/channel/UC8tPOcewvQp80xQWSsUgauQ"

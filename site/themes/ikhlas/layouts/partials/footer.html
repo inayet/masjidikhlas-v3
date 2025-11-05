@@ -1,0 +1,61 @@
+<footer class="site-footer">
+    <div class="container">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Masjid Ikhlas</h3>
+                <p>{{ .Site.Params.description }}</p>
+                <div class="social-links">
+                    {{ if .Site.Params.social.facebook }}
+                    <a href="{{ .Site.Params.social.facebook }}" aria-label="Facebook">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                    {{ end }}
+                    {{ if .Site.Params.social.instagram }}
+                    <a href="{{ .Site.Params.social.instagram }}" aria-label="Instagram">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    {{ end }}
+                    {{ if .Site.Params.social.youtube }}
+                    <a href="{{ .Site.Params.social.youtube }}" aria-label="YouTube">
+                        <i class="fab fa-youtube"></i>
+                    </a>
+                    {{ end }}
+                </div>
+            </div>
+            
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <ul>
+                    {{ range .Site.Menus.main }}
+                    <li><a href="{{ .URL }}">{{ .Name }}</a></li>
+                    {{ end }}
+                </ul>
+            </div>
+            
+            <div class="footer-section">
+                <h4>Contact Info</h4>
+                <div class="contact-info">
+                    <p><i class="fas fa-map-marker-alt"></i> {{ .Site.Params.address }}</p>
+                    <p><i class="fas fa-phone"></i> {{ .Site.Params.phone }}</p>
+                    <p><i class="fas fa-envelope"></i> {{ .Site.Params.contact_email }}</p>
+                </div>
+            </div>
+            
+            <div class="footer-section">
+                <h4>Prayer Times</h4>
+                <div class="prayer-times-footer">
+                    <p><strong>Fajr:</strong> 5:30 AM</p>
+                    <p><strong>Dhuhr:</strong> 1:00 PM</p>
+                    <p><strong>Asr:</strong> 4:30 PM</p>
+                    <p><strong>Maghrib:</strong> 7:00 PM</p>
+                    <p><strong>Isha:</strong> 8:30 PM</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>&copy; {{ now.Year }} {{ .Site.Title }}. All rights reserved.</p>
+            <p>A 501(c)(3) nonprofit organization</p>
+        </div>
+    </div>
+</footer>
