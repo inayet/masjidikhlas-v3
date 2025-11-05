@@ -1,0 +1,36 @@
+[alias]
+	# Masjid Ikhlas V3 Git Aliases
+	
+	# Development shortcuts
+	serve = "!cd site && hugo server --bind 0.0.0.0 --port 1313 --buildDrafts --buildFuture"
+	build = "!cd site && hugo --minify --gc"
+	workflow = "nix run .#workflow"
+	
+	# Deployment shortcuts
+	deploy = "!git push origin main"
+	status-full = "status --porcelain --branch"
+	
+	# Content management
+	new-page = "!f() { mkdir -p site/content/\"$1\" && printf '---\\ntitle: \"%s\"\\ndate: %s\\ndraft: false\\n---\\n\\n# %s\\n\\nContent goes here.\\n' \"$1\" \"$(date +%Y-%m-%d)\" \"$1\" > site/content/\"$1\"/_index.md && echo \"Created: site/content/$1/_index.md\"; }; f"
+	edit-prayer = "!${EDITOR:-nano} site/content/monthly-prayer-schedule/_index.md"
+	
+	# Quality checks
+	check = "!cd site && hugo check"
+	lint = "!find site/content -name '*.md' -exec echo 'Checking: {}' \\; && cd site && hugo check"
+	
+	# Site statistics
+	count-pages = "!find site/public -name '*.html' 2>/dev/null | wc -l || echo 'Build site first'"
+	site-size = "!du -sh site/public/ 2>/dev/null || echo 'Build site first'"
+	
+	# Quick workflow commands
+	quick-deploy = "!just deploy"
+	quick-build = "!just build"
+	quick-serve = "!just serve"
+	
+	# Log shortcuts
+	log-recent = "log --oneline -10"
+	log-changes = "log --stat --oneline -5"
+	
+	# Branch management
+	main = "checkout main"
+	new-branch = "!f() { git checkout -b \"$1\" && echo \"Created branch: $1\"; }; f"
