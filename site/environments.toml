@@ -1,0 +1,17 @@
+# Environment-specific baseURL configurations
+[environments]
+[environments.local]
+baseURL = "http://localhost:1313"
+description = "Local development server"
+
+[environments.github-pages]
+baseURL = "https://inayet.github.io/masjidikhlas-v3"
+description = "GitHub Pages deployment"
+
+[environments.production]
+baseURL = "https://masjidikhlas.org"
+description = "Production domain"
+
+[environments.railways]
+baseURL = "https://masjidikhlas.up.railway.app"
+description = "Railways deployment"

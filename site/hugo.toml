@@ -1,4 +1,4 @@
-baseURL = 'https://masjidikhlas.org'
+baseURL = 'https://inayet.github.io/masjidikhlas-v3'
 languageCode = 'en-us'
 title = 'Masjid Ikhlas'
 theme = 'ikhlas'

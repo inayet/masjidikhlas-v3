@@ -1,0 +1,21 @@
+# Dynamic configuration for different deployment environments
+# This file is processed by Hugo to set baseURL based on environment
+
+[deployment]
+# Local development
+[[deployment.targets]]
+name = "local"
+URL = "http://localhost:1313"
+
+# GitHub Pages
+[[deployment.targets]]
+name = "github-pages"
+URL = "https://inayet.github.io/masjidikhlas-v3"
+
+# Production domain
+[[deployment.targets]]
+name = "production"
+URL = "https://masjidikhlas.org"
+
+# Default to GitHub Pages for now
+baseURL = "https://inayet.github.io/masjidikhlas-v3"

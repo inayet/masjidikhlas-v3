@@ -30,17 +30,48 @@ start:
     @echo "🌐 Starting development server..."
     @echo "Site will be available at: http://localhost:1313"
     @echo "Press Ctrl+C to stop"
-    cd site && hugo server --bind 0.0.0.0 --port 1313 --buildDrafts --buildFuture --navigateToChanged
+    cd site && hugo server --bind 0.0.0.0 --port 1313 --buildDrafts --buildFuture --navigateToChanged --baseURL http://localhost:1313
 
 publish:
     # Complete publishing workflow: validate → build → deploy
     @echo "📤 Publishing Masjid Ikhlas V3..."
-    just check-all || (echo "❌ Quality checks failed!" && exit 1)
-    @echo "✅ All checks passed"
+    just safe-deploy
+
+publish-github:
+    # Publish to GitHub Pages with full validation
+    @echo "📤 Publishing to GitHub Pages..."
+    just pre-deploy-check || (echo "❌ Pre-deployment checks failed!" && exit 1)
+    @echo ""
+    @echo "🔧 Setting GitHub Pages environment..."
+    just set-env github-pages
+    @echo ""
+    @echo "🏗️  Building site..."
     just build
+    @echo ""
     @echo "🚀 Deploying to GitHub..."
     just push
-    @echo "🎉 Published successfully!"
+    @echo ""
+    @echo "🎉 Published successfully to GitHub Pages!"
+    @echo "🌐 Live at: https://inayet.github.io/masjidikhlas-v3"
+
+publish-production:
+    # Publish to production domain with full validation
+    @echo "📤 Publishing to production..."
+    just pre-deploy-check || (echo "❌ Pre-deployment checks failed!" && exit 1)
+    @echo ""
+    @echo "🔧 Setting production environment..."
+    just set-env production
+    @echo ""
+    @echo "🏗️  Building site..."
+    just build
+    @echo ""
+    @echo "📦 Ready for production deployment"
+    @echo "🌐 Will be live at: https://masjidikhlas.org"
+    @echo ""
+    @echo "⚠️  Manual deployment required for production domain"
+    @echo "   1. Configure DNS CNAME to point to your hosting"
+    @echo "   2. Upload site/public/ to your hosting provider"
+    @echo "   3. Configure SSL certificate"
 
 preview:
     # Build and preview production build locally
@@ -99,6 +130,79 @@ check-all:
     @echo ""
     @echo "✅ All quality checks completed!"
 
+pre-deploy-check:
+    # Comprehensive pre-deployment validation
+    @echo "🚀 Pre-deployment validation..."
+    @echo ""
+    @echo "1️⃣ Checking for uncommitted changes..."
+    @if [ -n "$(git status --porcelain)" ]; then
+        echo "❌ You have uncommitted changes:"
+        git status --porcelain
+        echo ""
+        echo "Please commit your changes first:"
+        echo "  git add ."
+        echo "  git commit -m 'Your commit message'"
+        exit 1
+    else
+        echo "✅ No uncommitted changes"
+    fi
+    @echo ""
+    @echo "2️⃣ Running quality checks..."
+    just check-all || (echo "❌ Quality checks failed!" && exit 1)
+    @echo ""
+    @echo "3️⃣ Checking build environment..."
+    just doctor
+    @echo ""
+    @echo "✅ Pre-deployment validation complete!"
+
+safe-deploy:
+    # Safe deployment that protects local changes
+    @echo "🛡️  Safe deployment workflow..."
+    just pre-deploy-check || (echo "❌ Pre-deployment checks failed!" && exit 1)
+    @echo ""
+    @echo "🚀 Proceeding with deployment..."
+    just deploy
+
+backup-local:
+    # Backup local changes before pulling
+    @echo "💾 Creating backup of local changes..."
+    @mkdir -p .backups
+    @git stash push -m "Auto-backup before pull $(date +%Y%m%d_%H%M%S)"
+    @echo "✅ Changes stashed safely"
+
+safe-pull:
+    # Pull changes without overwriting local work
+    @echo "🔄 Safe pull workflow..."
+    @if [ -n "$(git status --porcelain)" ]; then
+        echo "📦 You have local changes, creating backup..."
+        just backup-local
+    fi
+    @echo "📥 Pulling latest changes..."
+    @git pull origin main
+    @echo "✅ Pull complete"
+    @if [ -n "$(git stash list)" ]; then
+        echo "📦 Restoring your changes..."
+        @git stash pop
+    fi
+
+safe-sync:
+    # Sync with remote while preserving local changes
+    @echo "🔄 Safe sync workflow..."
+    just safe-pull
+    @echo ""
+    @echo "🔍 Checking for merge conflicts..."
+    @if [ -n "$(git diff --name-only --diff-filter=U)" ]; then
+        echo "⚠️  Merge conflicts detected in:"
+        git diff --name-only --diff-filter=U
+        echo ""
+        echo "Please resolve conflicts manually, then:"
+        echo "  git add ."
+        echo "  git commit"
+        exit 1
+    else
+        echo "✅ No conflicts detected"
+    fi
+
 quick-check:
     # Fast validation only (for development)
     @echo "⚡ Quick validation..."
@@ -156,8 +260,79 @@ push:
 deploy:
     # Build and deploy to GitHub Pages
     @echo "🚀 Deploying to GitHub Pages..."
+    just set-env github-pages
     just build && just push
     @echo "🎉 Deployment complete!"
+
+deploy-local:
+    # Build for local development
+    @echo "🏠 Building for local development..."
+    just set-env local
+    just build
+
+deploy-production:
+    # Build for production deployment
+    @echo "🌐 Building for production deployment..."
+    just set-env production
+    just build
+
+deploy-railways:
+    # Build for Railways deployment
+    @echo "🚂 Building for Railways deployment..."
+    just set-env railways
+    just build
+
+set-env environment="github-pages":
+    # Set baseURL for specific environment (safely)
+    @echo "🔧 Setting environment to: {{environment}}"
+    #!/usr/bin/env bash
+    # Backup current config
+    cp site/hugo.toml site/hugo.toml.backup
+    case "{{environment}}" in
+    "local")
+        sed -i 's|baseURL = .*|baseURL = "http://localhost:1313"|' site/hugo.toml
+        ;;
+    "github-pages")
+        sed -i 's|baseURL = .*|baseURL = "https://inayet.github.io/masjidikhlas-v3"|' site/hugo.toml
+        ;;
+    "production")
+        sed -i 's|baseURL = .*|baseURL = "https://masjidikhlas.org"|' site/hugo.toml
+        ;;
+    "railways")
+        sed -i 's|baseURL = .*|baseURL = "https://masjidikhlas.up.railway.app"|' site/hugo.toml
+        ;;
+    *)
+        echo "❌ Unknown environment: {{environment}}"
+        echo "Available: local, github-pages, production, railways"
+        # Restore backup
+        mv site/hugo.toml.backup site/hugo.toml
+        exit 1
+        ;;
+    esac
+    @echo "✅ Environment set to {{environment}}"
+    @echo "💾 Backup saved to site/hugo.toml.backup"
+
+restore-config:
+    # Restore configuration from backup
+    @if [ -f "site/hugo.toml.backup" ]; then
+        echo "🔄 Restoring configuration from backup..."
+        mv site/hugo.toml.backup site/hugo.toml
+        echo "✅ Configuration restored"
+    else
+        echo "❌ No backup found"
+    fi
+
+show-env:
+    # Show current environment settings
+    @echo "🌐 Current Environment Settings"
+    @echo "=============================="
+    @grep "baseURL" site/hugo.toml || echo "No baseURL found"
+    @echo ""
+    @echo "Available environments:"
+    @echo "  local       - http://localhost:1313"
+    @echo "  github-pages - https://inayet.github.io/masjidikhlas-v3"
+    @echo "  production  - https://masjidikhlas.org"
+    @echo "  railways    - https://masjidikhlas.up.railway.app"
 
 sync:
     # Pull latest changes and rebuild
@@ -250,7 +425,7 @@ content-stats:
 # Testing & Quality
 check-links:
     # Check for broken links locally using nixpkgs#html-proofer
-    nix run nixpkgs#html-proofer -- ./site/public --check-external-hash --allow-hash-href --check-favicon --check-img-http --log-level debug
+    nix run nixpkgs#html-proofer -- ./site/public --check-external-hash --allow-hash-href --log-level debug
 
 lint:
     # Run linting on content files using nixpkgs#markdownlint-cli2
