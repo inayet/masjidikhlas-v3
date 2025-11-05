@@ -200,7 +200,6 @@ check: status
 
 edit: edit-home
 prayer: edit-prayer
-page: new-page
 
 # 🔍 Advanced Commands (for power users)
 
