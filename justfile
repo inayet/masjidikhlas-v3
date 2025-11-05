@@ -10,9 +10,17 @@ default:
     @echo "  just publish    - Build and deploy to GitHub Pages"
     @echo "  just status     - Check project health"
     @echo ""
-    @echo "📝 Content:"
-    @echo "  just edit-home  - Update homepage content"
-    @echo "  just edit-prayer - Update prayer times"
+    @echo "📝 Edit Pages:"
+    @echo "  just edit-home      - Update homepage"
+    @echo "  just edit-about     - Edit About Us page"
+    @echo "  just edit-contact   - Edit Contact page"
+    @echo "  just edit-donate    - Edit Donation page"
+    @echo "  just edit-events    - Edit Events page"
+    @echo "  just edit-academy  - Edit Academy page"
+    @echo "  just edit-youth     - Edit Youth Department"
+    @echo "  just edit-outreach  - Edit Outreach page"
+    @echo "  just edit-services  - Edit Services page"
+    @echo "  just edit-prayer    - Update prayer times"
     @echo "  just new-page <name> - Create new page"
     @echo ""
     @echo "🔧 Tools:"
@@ -28,9 +36,12 @@ start:
     @echo "📍 Site will be available at: http://localhost:1313"
     @echo "💡 Press Ctrl+C to stop the server"
     @echo ""
-    @echo "🔧 Checking system..."
-    @if ! command -v hugo >/dev/null 2>&1; then echo "❌ Hugo not found. Run: nix develop"; exit 1; fi
-    @echo "✅ System ready"
+    @echo "🔧 Setting up environment..."
+    @if ! command -v hugo >/dev/null 2>&1; then \
+        echo "📦 Entering Nix development environment..."; \
+        exec nix develop -c hugo server --bind 0.0.0.0 --port 1313 --buildDrafts --buildFuture --navigateToChanged --source site; \
+    fi
+    @echo "✅ Hugo ready"
     @echo ""
     cd site && hugo server --bind 0.0.0.0 --port 1313 --buildDrafts --buildFuture --navigateToChanged
 
@@ -50,20 +61,61 @@ publish:
     fi
     @echo "✅ No uncommitted changes"
     @echo ""
-    @echo "🏗️  Building site for GitHub Pages..."
-    cd site && hugo --minify --gc --baseURL "https://inayet.github.io/masjidikhlas-v3"
+    @echo "🔧 Detecting repository..."
+    @REPO_URL=$$(git config --get remote.origin.url); \
+    if [ -z "$$REPO_URL" ]; then \
+        echo "❌ No git remote found. Please set up GitHub repository first."; \
+        exit 1; \
+    fi; \
+    REPO_NAME=$$(basename "$$REPO_URL" .git); \
+    USERNAME=$$(basename "$$(dirname "$$REPO_URL")"); \
+    if echo "$$REPO_URL" | grep -q "github.com"; then \
+        BASE_URL="https://$$USERNAME.github.io/$$REPO_NAME"; \
+        echo "📍 GitHub Pages URL: $$BASE_URL"; \
+    else \
+        BASE_URL="https://your-domain.com"; \
+        echo "⚠️  Non-GitHub repository detected"; \
+        echo "📍 Will use custom domain: $$BASE_URL"; \
+    fi; \
+    echo ""
+    @echo "🏗️  Building site for deployment..."
+    @REPO_URL=$$(git config --get remote.origin.url); \
+    REPO_NAME=$$(basename "$$REPO_URL" .git); \
+    USERNAME=$$(basename "$$(dirname "$$REPO_URL")"); \
+    if echo "$$REPO_URL" | grep -q "github.com"; then \
+        BASE_URL="https://$$USERNAME.github.io/$$REPO_NAME"; \
+    else \
+        BASE_URL="https://your-domain.com"; \
+    fi; \
+    if ! command -v hugo >/dev/null 2>&1; then \
+        nix develop -c hugo --minify --gc --baseURL "$$BASE_URL" --source site; \
+    else \
+        cd site && hugo --minify --gc --baseURL "$$BASE_URL"; \
+    fi
     @echo ""
-    @echo "🚀 Deploying to GitHub..."
+    @echo "🚀 Deploying to remote..."
     git push origin main
     @echo ""
     @echo "🎉 Published successfully!"
-    @echo "🌐 Live at: https://inayet.github.io/masjidikhlas-v3"
+    @REPO_URL=$$(git config --get remote.origin.url); \
+    REPO_NAME=$$(basename "$$REPO_URL" .git); \
+    USERNAME=$$(basename "$$(dirname "$$REPO_URL")"); \
+    if echo "$$REPO_URL" | grep -q "github.com"; then \
+        BASE_URL="https://$$USERNAME.github.io/$$REPO_NAME"; \
+        echo "🌐 Live at: $$BASE_URL"; \
+    else \
+        echo "🌐 Configure your domain to point to deployed files"; \
+    fi
     @echo "⏱️  Deployment may take 1-2 minutes to update"
 
 preview:
     # Preview production build locally with HTTPS
     @echo "🔍 Building production preview..."
-    cd site && hugo --minify --gc
+    @if ! command -v hugo >/dev/null 2>&1; then \
+        nix develop -c hugo --minify --gc --source site; \
+    else \
+        cd site && hugo --minify --gc; \
+    fi
     @echo ""
     @echo "🌐 Starting HTTPS preview server..."
     @echo "📍 Site will be available at: https://localhost:8443"
@@ -97,7 +149,8 @@ status:
     @echo ""
     @echo "🔗 Quick Links:"
     @echo "🏠 Local: http://localhost:1313 (run 'just start')"
-    @echo "🌐 Live: https://inayet.github.io/masjidikhlas-v3"
+    @echo "🌐 Repository:"
+    @git remote get-url origin 2>/dev/null || echo "  ⚠️  No remote configured"
 
 # 📝 Content Management
 
@@ -105,14 +158,71 @@ edit-home:
     # Quick edit homepage content
     @echo "🏠 Opening homepage editor..."
     @echo "📝 Editing: site/content/_index.md"
-    @echo "💡 Save and refresh browser to see changes"
+    @echo "💡 Save file, then run 'just start' to see changes"
+    @echo "🔄 Auto-refresh: Changes appear in browser automatically"
     nix run nixpkgs#neovim -- site/content/_index.md || ${EDITOR:-nano} site/content/_index.md
+
+edit-about:
+    # Edit About Us page
+    @echo "📖 Opening About Us editor..."
+    @echo "📝 Editing: site/content/about/_index.md"
+    @echo "💡 Update masjid information, history, and mission"
+    nix run nixpkgs#neovim -- site/content/about/_index.md || ${EDITOR:-nano} site/content/about/_index.md
+
+edit-contact:
+    # Edit Contact page
+    @echo "📞 Opening Contact editor..."
+    @echo "📝 Editing: site/content/contact/_index.md"
+    @echo "💡 Update address, phone, email, and office hours"
+    nix run nixpkgs#neovim -- site/content/contact/_index.md || ${EDITOR:-nano} site/content/contact/_index.md
+
+edit-donate:
+    # Edit Donation page
+    @echo "💝 Opening Donation editor..."
+    @echo "📝 Editing: site/content/donate/_index.md"
+    @echo "💡 Update donation methods, campaigns, and zakat information"
+    nix run nixpkgs#neovim -- site/content/donate/_index.md || ${EDITOR:-nano} site/content/donate/_index.md
+
+edit-events:
+    # Edit Events page
+    @echo "📅 Opening Events editor..."
+    @echo "📝 Editing: site/content/events/_index.md"
+    @echo "💡 Update regular programs and special events"
+    nix run nixpkgs#neovim -- site/content/events/_index.md || ${EDITOR:-nano} site/content/events/_index.md
+
+edit-academy:
+    # Edit Ikhlas Academy page
+    @echo "🎓 Opening Academy editor..."
+    @echo "📝 Editing: site/content/ikhlas-academy/_index.md"
+    @echo "💡 Update educational programs and class schedules"
+    nix run nixpkgs#neovim -- site/content/ikhlas-academy/_index.md || ${EDITOR:-nano} site/content/ikhlas-academy/_index.md
+
+edit-youth:
+    # Edit Youth Department page
+    @echo "👥 Opening Youth Department editor..."
+    @echo "📝 Editing: site/content/ikhlas-youth-department/_index.md"
+    @echo "💡 Update youth programs, activities, and schedules"
+    nix run nixpkgs#neovim -- site/content/ikhlas-youth-department/_index.md || ${EDITOR:-nano} site/content/ikhlas-youth-department/_index.md
+
+edit-outreach:
+    # Edit Outreach Department page
+    @echo "🤝 Opening Outreach editor..."
+    @echo "📝 Editing: site/content/outreach-department/_index.md"
+    @echo "💡 Update community programs and interfaith activities"
+    nix run nixpkgs#neovim -- site/content/outreach-department/_index.md || ${EDITOR:-nano} site/content/outreach-department/_index.md
+
+edit-services:
+    # Edit Services page
+    @echo "🛎️  Opening Services editor..."
+    @echo "📝 Editing: site/content/services/_index.md"
+    @echo "💡 Update masjid services and facilities"
+    nix run nixpkgs#neovim -- site/content/services/_index.md || ${EDITOR:-nano} site/content/services/_index.md
 
 edit-prayer:
     # Update prayer times for current month
     @echo "🕌 Opening prayer times editor..."
     @echo "📝 Editing: site/content/monthly-prayer-schedule/_index.md"
-    @echo "💡 Update times for current month"
+    @echo "💡 Update prayer times for current month"
     nix run nixpkgs#neovim -- site/content/monthly-prayer-schedule/_index.md || ${EDITOR:-nano} site/content/monthly-prayer-schedule/_index.md
 
 new-page name:
@@ -162,12 +272,20 @@ help:
     @echo "1. just start     - Start local development server"
     @echo "2. Edit content   - Use edit-* commands to update content"
     @echo "3. just preview   - Test production build locally"
-    @echo "4. just publish  - Deploy to GitHub Pages"
+    @echo "4. just publish  - Deploy to your repository"
     @echo ""
     @echo "📝 Content Management:"
-    @echo "• just edit-home    - Edit homepage content"
-    @echo "• just edit-prayer  - Update prayer schedule"
-    @echo "• just new-page name - Create new page"
+    @echo "• just edit-home      - Edit homepage content"
+    @echo "• just edit-about     - Edit About Us page"
+    @echo "• just edit-contact   - Edit Contact page"
+    @echo "• just edit-donate    - Edit Donation page"
+    @echo "• just edit-events    - Edit Events page"
+    @echo "• just edit-academy  - Edit Academy page"
+    @echo "• just edit-youth     - Edit Youth Department"
+    @echo "• just edit-outreach  - Edit Outreach page"
+    @echo "• just edit-services  - Edit Services page"
+    @echo "• just edit-prayer    - Update prayer schedule"
+    @echo "• just new-page name   - Create new page"
     @echo ""
     @echo "🔧 Maintenance:"
     @echo "• just status      - Check project health"
@@ -176,13 +294,30 @@ help:
     @echo ""
     @echo "🌐 Deployment:"
     @echo "• Local: http://localhost:1313"
-    @echo "• GitHub Pages: https://inayet.github.io/masjidikhlas-v3"
+    @REPO_URL=$$(git config --get remote.origin.url 2>/dev/null); \
+    if [ -n "$$REPO_URL" ] && echo "$$REPO_URL" | grep -q "github.com"; then \
+        REPO_NAME=$$(basename "$$REPO_URL" .git); \
+        USERNAME=$$(basename "$$(dirname "$$REPO_URL")"); \
+        echo "• GitHub Pages: https://$$USERNAME.github.io/$$REPO_NAME"; \
+    elif [ -n "$$REPO_URL" ]; then \
+        echo "• Repository: $$REPO_URL"; \
+        echo "• Configure your domain for deployment"; \
+    else \
+        echo "• Set up git repository to enable deployment"; \
+    fi
     @echo ""
     @echo "💡 Tips:"
     @echo "• Changes auto-refresh in browser during development"
     @echo "• Git commits are required before publishing"
     @echo "• GitHub Pages auto-deploys on push to main branch"
     @echo "• Use 'just status' to check current project state"
+    @echo "• Commands automatically detect your repository settings"
+    @echo ""
+    @echo "🔄 Typical Workflow:"
+    @echo "1. just start           # Start development server"
+    @echo "2. just edit-*          # Edit content (auto-refreshes)"
+    @echo "3. just preview         # Test production build"
+    @echo "4. just publish         # Deploy to GitHub Pages"
 
 # ⚡ Quick Aliases
 
@@ -198,7 +333,17 @@ h: help
 info: status
 check: status
 
+# Page editing aliases
 edit: edit-home
+home: edit-home
+about: edit-about
+contact: edit-contact
+donate: edit-donate
+events: edit-events
+academy: edit-academy
+youth: edit-youth
+outreach: edit-outreach
+services: edit-services
 prayer: edit-prayer
 
 # 🔍 Advanced Commands (for power users)
