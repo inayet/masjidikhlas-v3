@@ -143,7 +143,6 @@ pre-deploy-check:
         echo "  git add ."; \
         echo "  git commit -m 'Your commit message'"; \
         exit 1; \
-    fi
     else \
         echo "✅ No uncommitted changes"; \
     fi
