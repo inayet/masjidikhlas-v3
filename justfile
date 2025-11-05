@@ -39,7 +39,8 @@ start:
     @echo "🔧 Setting up environment..."
     @if ! command -v hugo >/dev/null 2>&1; then \
         echo "📦 Entering Nix development environment..."; \
-        exec nix develop -c cd site && hugo server --bind 0.0.0.0 --port 1313 --buildDrafts --buildFuture --navigateToChanged --baseURL http://localhost:1313; \
+        nix develop -c "cd site && hugo server --bind 0.0.0.0 --port 1313 --buildDrafts --buildFuture --navigateToChanged --baseURL http://localhost:1313"; \
+        exit 0; \
     fi
     @echo "✅ Hugo ready"
     @echo ""
