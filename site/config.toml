@@ -17,5 +17,9 @@ URL = "https://testuser.github.io/test-community-site"
 name = "production"
 URL = "test-community-site.org"
 
-# Default to GitHub Pages for now
+# Dynamic baseURL based on environment
+# Set HUGO_ENV environment variable to switch environments
+# HUGO_ENV=local -> http://localhost:1313
+# HUGO_ENV=github-pages -> https://inayet.github.io/masjidikhlas-v3/
+# HUGO_ENV=production -> https://masjidikhlas.org
 baseURL = "https://inayet.github.io/masjidikhlas-v3/"

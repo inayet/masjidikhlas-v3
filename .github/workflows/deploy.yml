@@ -36,6 +36,8 @@ jobs:
       - name: Build Site
         run: |
           cd site
+          # Set environment for GitHub Pages deployment
+          export HUGO_ENV=github-pages
           # Use GitHub's automatic URL detection for flexible deployment
           hugo --gc --minify --baseURL ${{ steps.pages.outputs.base_url }} || hugo --gc --minify
 
