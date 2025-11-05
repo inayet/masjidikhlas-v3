@@ -525,6 +525,28 @@ Setup script customization cycles created inconsistent branding throughout conte
 - **Committed**: ✅ Changes committed to git
 - **Verification**: All pages show proper Masjid Ikhlas branding
 
+### 🖼️ Image Loading Issues
+
+#### Problem
+Logo and hero images were corrupted (1x1 pixel placeholder and ASCII text instead of actual images).
+
+#### Root Cause
+Wayback Machine restoration process created corrupted image files instead of proper images.
+
+#### Solution
+✅ **Fixed**: Created new proper images using ImageMagick
+
+- **logo.png**: 4745 bytes, "Masjid Ikhlas" text branding
+- **mosque-hero.jpg**: 24373 bytes, mosque information header
+- Images now display properly on all pages
+- Proper alt text and accessibility maintained
+
+#### Status
+- **Fixed**: ✅ Both images recreated and working
+- **Accessible**: ✅ Images load correctly via HTTP
+- **Verified**: ✅ HTML references are correct
+- **Size**: ✅ Appropriate file sizes for web use
+
 ### 🌐 GitHub Pages Deployment Issue
 
 #### Problem
