@@ -18,4 +18,4 @@ name = "production"
 URL = "test-community-site.org"
 
 # Default to GitHub Pages for now
-baseURL = "https://testuser.github.io/test-community-site"
+baseURL = "https://inayet.github.io/masjidikhlas-v3/"
