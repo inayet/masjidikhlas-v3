@@ -58,7 +58,7 @@ preview:
     @echo "🌐 Starting HTTP preview server..."
     @echo "📍 Site will be available at: http://localhost:8080"
     @echo "💡 Press Ctrl+C to stop"
-    nix develop -c bash -c 'cd "$(git rev-parse --show-toplevel)/site" && hugo server --port 8080 --bind 0.0.0.0 --disableFastRender'
+    nix develop -c bash -c 'cd "$(git rev-parse --show-toplevel)/site" && hugo server --port 8080 --bind 0.0.0.0 --disableFastRender --baseURL http://localhost:8080/'
 
 status:
     # Show comprehensive project status
