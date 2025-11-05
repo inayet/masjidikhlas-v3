@@ -22,4 +22,5 @@ URL = "test-community-site.org"
 # HUGO_ENV=local -> http://localhost:1313
 # HUGO_ENV=github-pages -> https://inayet.github.io/masjidikhlas-v3/
 # HUGO_ENV=production -> https://masjidikhlas.org
-baseURL = "https://inayet.github.io/masjidikhlas-v3/"
+# baseURL will be set dynamically via environment variables
+# baseURL = ""

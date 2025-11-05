@@ -43,3 +43,6 @@ case "$HUGO_ENV" in
 esac
 
 echo "🌐 Base URL: $HUGO_BASEURL"
+
+# Set HUGO_PARAMS_BASEURL for Hugo
+export HUGO_PARAMS_BASEURL="$HUGO_BASEURL"
