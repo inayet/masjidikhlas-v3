@@ -158,9 +158,18 @@
           ];
           shellHook = ''
             echo "🕌 Masjid Ikhlas V3 Dev Shell"
-            echo "Run nix run .#docs to see instructions"
-            echo "Run nix run .#serve to start local HTTPS server"
-            echo "Starting in site directory for Hugo development..."
+            echo ""
+            echo "🚀 Quick Start:"
+            echo "  just start      - Start development server"
+            echo "  just edit-*     - Edit content pages"
+            echo "  just publish    - Build and deploy"
+            echo "  just help       - Show detailed help"
+            echo ""
+            echo "📚 Documentation:"
+            echo "  nix run .#docs  - Show full documentation"
+            echo "  nix run .#serve - Start HTTPS server"
+            echo ""
+            echo "🔧 Entering site directory for Hugo development..."
             cd site
           '';
         };
