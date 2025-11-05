@@ -1,7 +1,7 @@
 # Hugo Site Configuration
 # Template for Masjid Ikhlas V3 - Customize for your organization
 
-baseURL = "https://inayet.github.io/masjidikhlas-v3"
+baseURL = "https://masjidikhlas.org"
 languageCode = 'en-us'
 title = 'Masjid Ikhlas'
 theme = 'ikhlas'
