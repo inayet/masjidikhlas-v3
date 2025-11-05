@@ -48,6 +48,7 @@ publish:
     @echo ""
     @echo "🎉 Published successfully!"
     @echo "🌐 Repository: $(git remote get-url origin 2>/dev/null || echo 'Not configured')"
+    @echo "🌐 Live Site: https://$(git config --get remote.origin.url | sed -n 's|.*github.com[:/]\([^/]*\)/\(.*\)\.git|\1.github.io/\2|p')/"
     @echo "⏱️  Deployment may take 1-2 minutes to update"
 
 preview:

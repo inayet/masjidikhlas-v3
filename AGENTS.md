@@ -550,29 +550,31 @@ Wayback Machine restoration process created corrupted image files instead of pro
 ### 🌐 GitHub Pages Deployment Issue
 
 #### Problem
-GitHub Pages serving README.md instead of Hugo site.
+GitHub Pages serving README.md instead of Hugo site, deployment failures.
 
 #### Root Cause
-GitHub Pages configured for "legacy" build instead of GitHub Actions.
+Missing `.nojekyll` file and incorrect Pages configuration (legacy instead of workflow).
 
 #### Solution
-✅ **Fixed**: Updated repository configuration
-- Made repository public (required for GitHub Actions)
-- Updated Pages build type to "github_actions"
+✅ **Fixed**: Complete GitHub Pages configuration
+- Added `.nojekyll` file to prevent Jekyll processing
+- Updated Pages build type to "workflow" 
 - GitHub Actions workflow working correctly
+- Updated justfile to show actual deployment URL
 
 #### Verification
 ```bash
 git push origin main           # Triggers deployment
-# Check: https://testuser.github.io/test-community-site/
-# Shows Hugo site, not README.md
+# Check: https://inayet.github.io/masjidikhlas-v3/
+# Shows Hugo site with proper Masjid Ikhlas content
 ```
 
 #### Status
 - **Fixed**: ✅ Resolved
-- **Build Type**: GitHub Actions
-- **Deployment**: Automatic on push
-- **URL**: https://testuser.github.io/test-community-site/
+- **Build Type**: GitHub Actions workflow
+- **Deployment**: Automatic on push to main branch
+- **URL**: https://inayet.github.io/masjidikhlas-v3/
+- **Content**: ✅ Proper Hugo site with Masjid Ikhlas branding
 
 ---
 
